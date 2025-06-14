@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prove You're Not a Robot</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8a2be2, #dda0dd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    label {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 25px;
+      background-color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #8a2be2;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e6e6fa;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prove that you are not a robot 🤖💜</h1>
+    <form id="captchaForm">
+      <label for="answer">What is our common favourite song?</label>
+      <input type="text" id="answer" name="answer" placeholder="Type here...">
+      <br>
+      <button type="submit">Submit</button>
+      <div class="message" id="message"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('captchaForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const answer = document.getElementById('answer').value.trim().toLowerCase();
+
+      if (answer === 'kho gaye') {
+        messageDiv.style.color = '#00ffcc';
+        messageDiv.textContent = "Yeah, you got it 💖";
+        setTimeout(() => {
+          window.location.href = "nextpage.html"; // replace with your actual next page
+        }, 1500);
+      } else {
+        messageDiv.style.color = '#ffcccc';
+        messageDiv.textContent = "It's quite close da 💔 Better luck next time!";
+      }
+    });
+  </script>
+</body>
+</html>
