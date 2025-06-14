@@ -3,116 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prove You're Not a Robot</title>
+  <title>Mohit and Thara 💜</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #8a2be2, #dda0dd);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      background: linear-gradient(135deg, #f8e1ff, #dcd0ff, #ffe6f7);
+      overflow-x: hidden;
       position: relative;
     }
 
-    .container {
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      color: white;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    label {
-      font-size: 18px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    input[type="text"] {
-      padding: 10px;
-      width: 80%;
-      border-radius: 10px;
-      border: none;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 10px 25px;
-      background-color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #8a2be2;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #e6e6fa;
-    }
-
-    .message {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      color: black;
-    }
-
-    .hearts {
-      position: absolute;
+    .aurora-bg {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: -1;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      animation: floatHeart 10s linear infinite;
-      color: #ff69b4;
-    }
-
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) scale(1.5);
-        opacity: 0;
-      }
-    }
-
-    .aurora {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100px;
       background: linear-gradient(90deg, #ffd1dc, #dda0dd, #ffb6c1, #ffc0cb);
       background-size: 600% 100%;
-      animation: auroraMove 10s ease-in-out infinite;
-      z-index: -2;
-      filter: blur(30px);
+      animation: auroraMove 15s ease-in-out infinite;
+      z-index: -3;
+      filter: blur(40px);
     }
 
     @keyframes auroraMove {
@@ -121,84 +33,184 @@
       100% { background-position: 0% 50%; }
     }
 
-    .ribbon {
+    .main-heading {
+      text-align: center;
+      font-size: 32px;
+      color: #ff1493;
+      margin-top: 30px;
+      font-weight: bold;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 28px;
+      color: #4b0082;
+      padding: 10px 10px 10px;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .title span {
+      display: block;
+      font-size: 20px;
+      color: #6a0dad;
+      margin-top: 10px;
+    }
+
+    .theme-img {
+      display: block;
+      margin: 0 auto;
+      width: 160px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      color: #3c0066;
+    }
+
+    .story {
+      font-size: 17px;
+      line-height: 1.7;
+      animation: fadeIn 2.5s ease;
+    }
+
+    .emoji {
+      font-size: 20px;
+    }
+
+    .message {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: black;
+      margin-top: 20px;
+    }
+
+    .balloon {
       position: absolute;
-      top: 10px;
+      font-size: 90px;
       left: 50%;
-      transform: translateX(-50%);
-      font-size: 30px;
-      z-index: 10;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      animation: pop 0.6s ease-out forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+      100% { transform: scale(3) translate(-50%, -200%); opacity: 0; }
+    }
+
+    .chocolates {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .choco {
+      position: absolute;
+      font-size: 24px;
+      animation: drop 3s linear;
+    }
+
+    @keyframes drop {
+      from { transform: translateY(-50px); opacity: 1; }
+      to { transform: translateY(100vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="aurora"></div>
-  <div class="ribbon">🎀</div>
-  <div class="hearts"></div>
+  <div class="aurora-bg"></div>
+
+  <h1 class="main-heading">✨ First Step Towards Core Memories ✨</h1>
+
+  <h1 class="title">
+    Mohit and Thara 💞<br>
+    <span>He fell first, but I fell harder 💘</span>
+  </h1>
+
+  <img class="theme-img" src="https://i.pinimg.com/originals/23/f3/53/23f353a336a47d0c1f2a4a3e849b78e0.gif" alt="Rapunzel blowing candle">
 
   <div class="container">
-    <h1>Prove that you are not a robot 🤖💜</h1>
-    <form id="captchaForm">
-      <label for="answer">What is our common favourite song?</label>
-      <input type="text" id="answer" name="answer" placeholder="Type here...">
-      <br>
-      <button type="submit">Submit</button>
-      <div class="message" id="message"></div>
+    <div class="story">
+      Even though we were in the same division in 4th and 5th standard 🏫,<br>
+      even though we travelled together in KRK 🚌,<br>
+      even though our sweet senior chechis shipped us 💌 and already married us with leaves 🌿🍃,<br>
+      and that day we both ran away shouting "chii! 😖"...<br><br>
+
+      Destiny had other plans 😅<br>
+      Now look at us — it's 2025, and it’s been almost a year since you confessed your love to me 💕.<br>
+      Since then, you’ve made constant efforts to make me smile 😊, stood by me when I was at my lowest 🌧️,<br>
+      and faced everyone just for me 💪❤️.<br><br>
+
+      July 13, 2024 — the day we officially committed 💍 — was hilarious 😂,<br>
+      because I basically made you confess indirectly through Truth or Dare 😂🎲.<br><br>
+
+      But hey Sachutty, I know it hasn’t always been easy for you... but listen...<br>
+      Your Vava is **always rooting for you** 🌈💖🌻💪✨
+    </div>
+    <div class="message" id="message">Click below to prove you're not a robot 🤖</div>
+    <form id="captchaForm" style="text-align:center; margin-top: 20px;">
+      <input type="text" id="answer" placeholder="What is our favourite song?">
+      <button type="submit">Confirm I'm not a robot 💗</button>
     </form>
   </div>
+
+  <div class="chocolates" id="chocolates"></div>
 
   <script>
     const form = document.getElementById('captchaForm');
     const messageDiv = document.getElementById('message');
+    const chocolates = document.getElementById('chocolates');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const answer = document.getElementById('answer').value.trim().toLowerCase();
 
       if (answer === 'kho gaye') {
-        messageDiv.style.color = 'black';
-        messageDiv.textContent = "Yeah, you got it 💖 (Click me 🎈)";
-        messageDiv.style.cursor = 'pointer';
+        messageDiv.textContent = "Yeah, you got it 💖 Balloons incoming!";
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        balloon.textContent = '🎈';
+        document.body.appendChild(balloon);
 
-        messageDiv.onclick = function() {
-          const balloon = document.createElement('div');
-          balloon.textContent = '🎈';
-          balloon.style.position = 'absolute';
-          balloon.style.fontSize = '40px';
-          balloon.style.left = '50%';
-          balloon.style.top = '50%';
-          balloon.style.transform = 'translate(-50%, -50%)';
-          document.body.appendChild(balloon);
+        for (let i = 0; i < 20; i++) {
+          const choco = document.createElement('div');
+          choco.className = 'choco';
+          choco.textContent = '🍫';
+          choco.style.left = Math.random() * 100 + 'vw';
+          choco.style.animationDuration = 2 + Math.random() * 2 + 's';
+          chocolates.appendChild(choco);
+          setTimeout(() => choco.remove(), 3000);
+        }
 
-          setTimeout(() => {
-            balloon.style.transition = 'transform 0.7s ease, opacity 0.5s';
-            balloon.style.transform = 'translate(-50%, -200%)';
-            balloon.style.opacity = '0';
-          }, 100);
-
-          setTimeout(() => {
-            window.location.href = "nextpage.html";
-          }, 1500);
-        };
-
+        setTimeout(() => {
+          window.location.href = "nextpage.html";
+        }, 2000);
       } else {
-        messageDiv.style.color = 'black';
         messageDiv.textContent = "Ohh that's so close... but yet wrong 💔";
       }
     });
-
-    // Floating heart generator
-    const heartsContainer = document.querySelector('.hearts');
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.textContent = '💖';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-      heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }
-    setInterval(createHeart, 400);
   </script>
 </body>
 </html>
