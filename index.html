@@ -3,224 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohit and Thara 💜</title>
+  <title>Prove you are not a robot 🤖💜</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e6ccff, #d1b3ff);
-      overflow-x: hidden;
-      position: relative;
+      background: linear-gradient(to bottom, #a276d4, #6e44b6);
+      overflow: hidden;
     }
 
-    .aurora-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #ffd1dc, #dda0dd, #ffb6c1, #ffc0cb);
-      background-size: 600% 100%;
-      animation: auroraMove 15s ease-in-out infinite;
-      z-index: -3;
-      filter: blur(40px);
+    .floating-drop {
+      position: absolute;
+      top: -50px;
+      width: 15px;
+      height: 15px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      animation: dropDown 6s linear forwards;
     }
 
-    @keyframes auroraMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .main-heading {
-      text-align: center;
-      font-size: 34px;
-      color: #6a0dad;
-      margin-top: 20px;
-      font-weight: bold;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .robot-line {
-      text-align: center;
-      font-size: 28px;
-      color: #4b0082;
-      font-weight: bold;
-      animation: fadeIn 2s ease-out;
-    }
-
-    .theme-img {
-      display: block;
-      margin: 0 auto;
-      width: 160px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes dropDown {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh);
+        opacity: 0;
+      }
     }
 
     .container {
-      max-width: 700px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(12px);
-      margin: 30px auto;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      color: #3c0066;
-    }
-
-    .story {
-      font-size: 17px;
-      line-height: 1.7;
-      animation: fadeIn 2.5s ease;
-    }
-
-    .emoji {
-      font-size: 20px;
-    }
-
-    .message {
-      text-align: center;
-      font-weight: bold;
-      font-size: 18px;
-      color: black;
-      margin-top: 20px;
-    }
-
-    .balloon {
       position: absolute;
-      font-size: 90px;
+      top: 50%;
       left: 50%;
-      top: 40%;
       transform: translate(-50%, -50%);
-      animation: pop 0.6s ease-out forwards;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
     }
 
-    @keyframes pop {
-      0% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
-      100% { transform: scale(3) translate(-50%, -200%); opacity: 0; }
+    h1 {
+      font-size: 26px;
+      color: white;
     }
 
-    .chocolates {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 999;
+    label, input, button {
+      display: block;
+      margin: 15px auto;
+      font-size: 16px;
     }
 
-    .choco {
-      position: absolute;
-      font-size: 24px;
-      animation: drop 3s linear;
+    input {
+      padding: 10px;
+      width: 80%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
     }
 
-    @keyframes drop {
-      from { transform: translateY(-50px); opacity: 1; }
-      to { transform: translateY(100vh); opacity: 0; }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #d58eff;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
     }
 
-    .floating-heart {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 24px;
-      animation: floatHeart 5s infinite ease-in-out;
-    }
-
-    @keyframes floatHeart {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
+    #result {
+      margin-top: 20px;
+      color: black;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="aurora-bg"></div>
-  <audio autoplay loop>
-    <source src="https://docs.google.com/uc?export=open&id=1nURlWbDRBcoXYzh1WcoRznFPZ9F2TlvN" type="audio/mp3">
-  </audio>
-
-  <div class="floating-heart">❤️❤️🎀❤️</div>
-
-  <h1 class="main-heading">🔑 Key to Core Memories</h1>
-  <h2 class="robot-line">🤖 Prove if you are not a robot</h2>
-
+  <h1 style="text-align: center; color: white; margin-top: 20px;">✨ Key to Core Memories ✨</h1>
   <div class="container">
-    <div class="message" id="message">Click below to prove you're not a robot 🤖</div>
-    <form id="captchaForm" style="text-align:center; margin-top: 20px;">
-      <input type="text" id="answer" placeholder="What is our favourite song?">
-      <button type="submit">Confirm I'm not a robot 💗</button>
-    </form>
-
-    <div class="story" id="loveStory" style="display:none;">
-      Even though we were in the same division in 4th and 5th standard 🏫,<br>
-      even though we travelled together in KRK 🚌,<br>
-      even though our sweet senior chechis shipped us 💌 and already married us with leaves 🌿🍃,<br>
-      and that day we both ran away shouting "chii! 😖"...<br><br>
-
-      Destiny had other plans 😅<br>
-      Now look at us — it's 2025, and it’s been almost a year since you confessed your love to me 💕.<br>
-      Since then, you’ve made constant efforts to make me smile 😊, stood by me when I was at my lowest 🌧️,<br>
-      and faced everyone just for me 💪❤️.<br><br>
-
-      July 13, 2024 — the day we officially committed 💍 — was hilarious 😂,<br>
-      because I basically made you confess indirectly through Truth or Dare 😂🎲.<br><br>
-
-      But hey Sachutty, I know it hasn’t always been easy for you... but listen...<br>
-      Your Vava is <strong>always rooting for you</strong> 🌈💖🌻💪✨
-    </div>
+    <h1>Prove that you are not a robot 🤖💜</h1>
+    <label for="captcha">What is our common favourite song?</label>
+    <input type="text" id="captcha" placeholder="Type here...">
+    <button onclick="checkCaptcha()">Submit</button>
+    <div id="result"></div>
   </div>
 
-  <div class="chocolates" id="chocolates"></div>
+  <audio autoplay loop>
+    <source src="https://dl.sndup.net/7cjn/Kabira%20Encore%20-%20Yeh%20Jawaani%20Hai%20Deewani.mp3" type="audio/mp3">
+  </audio>
 
   <script>
-    const form = document.getElementById('captchaForm');
-    const messageDiv = document.getElementById('message');
-    const chocolates = document.getElementById('chocolates');
-    const loveStory = document.getElementById('loveStory');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const answer = document.getElementById('answer').value.trim().toLowerCase();
-
-      if (answer === 'kho gaye') {
-        messageDiv.textContent = "Yeah, you got it 💖 Balloons incoming!";
-        loveStory.style.display = "block";
-
-        const balloon = document.createElement('div');
-        balloon.className = 'balloon';
-        balloon.textContent = '🎈';
-        document.body.appendChild(balloon);
-
-        for (let i = 0; i < 20; i++) {
-          const choco = document.createElement('div');
-          choco.className = 'choco';
-          choco.textContent = '🍫';
-          choco.style.left = Math.random() * 100 + 'vw';
-          choco.style.animationDuration = 2 + Math.random() * 2 + 's';
-          chocolates.appendChild(choco);
-          setTimeout(() => choco.remove(), 3000);
-        }
-
-        setTimeout(() => {
-          window.location.href = "nextpage.html";
-        }, 4000);
+    function checkCaptcha() {
+      const input = document.getElementById("captcha").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+      if (input === "kho gaye") {
+        result.textContent = "Yeah you got it 💖";
       } else {
-        messageDiv.textContent = "Ohh that's so close... but yet wrong 💔";
+        result.textContent = "Ohh that's so close... but yet wrong 💔";
       }
-    });
+    }
+
+    function createRaindrops() {
+      const count = 3;
+      for (let i = 0; i < count; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('floating-drop');
+        drop.style.left = Math.random() * 100 + 'vw';
+        drop.style.width = drop.style.height = 5 + Math.random() * 10 + 'px';
+        drop.style.animationDuration = 3 + Math.random() * 4 + 's';
+        document.body.appendChild(drop);
+        setTimeout(() => drop.remove(), 8000);
+      }
+    }
+    setInterval(createRaindrops, 1000);
   </script>
 </body>
 </html>
