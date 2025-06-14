@@ -9,7 +9,13 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #a276d4, #6e44b6);
+      background: repeating-linear-gradient(
+        to bottom,
+        #a067e6,
+        #a067e6 30px,
+        #9059d6 30px,
+        #9059d6 60px
+      );
       overflow: hidden;
     }
 
@@ -43,7 +49,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(15px);
       padding: 40px;
       border-radius: 20px;
@@ -72,7 +78,7 @@
     button {
       padding: 10px 20px;
       border: none;
-      background-color: #d58eff;
+      background-color: #e8b3ff;
       color: white;
       border-radius: 10px;
       cursor: pointer;
@@ -83,16 +89,81 @@
       color: black;
       font-weight: bold;
     }
+
+    #loveStory {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 15px;
+      color: black;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .illustration {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .illustration img {
+      width: 60px;
+      margin: 0 10px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .popup {
+      width: 100px;
+      height: 100px;
+      background: url('https://media.giphy.com/media/xT0GqFv5tqZpZEz5Co/giphy.gif');
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
   <h1 style="text-align: center; color: white; margin-top: 20px;">✨ Key to Core Memories ✨</h1>
-  <div class="container">
+  <div class="container" id="captchaContainer">
     <h1>Prove that you are not a robot 🤖💜</h1>
     <label for="captcha">What is our common favourite song?</label>
     <input type="text" id="captcha" placeholder="Type here...">
     <button onclick="checkCaptcha()">Submit</button>
     <div id="result"></div>
+  </div>
+
+  <div id="popup" class="popup"></div>
+
+  <div id="loveStory">
+    <div class="illustration">
+      <img src="https://em-content.zobj.net/thumbs/120/apple/354/teddy-bear_1f9f8.png" alt="teddy">
+      <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
+    </div>
+    <h2 style="text-align:center; color: black;">Mohit and Thara 💕</h2>
+    Even though we were in the same division in 4th and 5th standard, and even travelled in the same KRK van, life had other plans. Our seniors even shipped us together, threw leaves like it was our wedding — and we ran away screaming “chii”! 😂 But look at destiny... here we are in 2025, almost a year since you confessed your love to me. 
+    <br><br>
+    On July 13th, 2024, the day we got committed — still feels surreal and hilarious, how I made you say it indirectly through Truth or Dare. 😄
+    <br><br>
+    But Sachutty, I know life hasn’t been easy for you. Still, you’ve stood by me, supported me in my lowest times, and always tried to make me smile. You stood for me in front of everyone, and that means everything. Your vava is always rooting for you... 💗✨
   </div>
 
   <iframe style="display:none" allow="autoplay" src="https://www.youtube.com/embed/j1uG4zyGFV0?autoplay=1&loop=1&playlist=j1uG4zyGFV0" id="ytplayer" type="text/html" frameborder="0" allowfullscreen></iframe>
@@ -101,10 +172,19 @@
     function checkCaptcha() {
       const input = document.getElementById("captcha").value.trim().toLowerCase();
       const result = document.getElementById("result");
+      const story = document.getElementById("loveStory");
+      const popup = document.getElementById("popup");
+
       if (input === "kho gaye") {
         result.textContent = "Yeah you got it 💖";
+        story.style.display = "block";
+        document.getElementById("captchaContainer").style.display = "none";
+        popup.style.display = 'block';
+        setTimeout(() => popup.style.display = 'none', 2000);
+        document.getElementById("ytplayer").style.display = 'block';
       } else {
         result.textContent = "Ohh that's so close... but yet wrong 💔";
+        story.style.display = "none";
       }
     }
 
