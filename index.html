@@ -14,7 +14,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      color: white;
+      overflow: hidden;
+      position: relative;
     }
 
     .container {
@@ -24,12 +25,12 @@
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       text-align: center;
+      color: white;
     }
 
     h1 {
       font-size: 28px;
       margin-bottom: 20px;
-      color: #fff;
     }
 
     label {
@@ -66,10 +67,75 @@
       margin-top: 20px;
       font-size: 18px;
       font-weight: bold;
+      color: black;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatHeart 10s linear infinite;
+      color: #ff69b4;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .aurora {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(90deg, #ffd1dc, #dda0dd, #ffb6c1, #ffc0cb);
+      background-size: 600% 100%;
+      animation: auroraMove 10s ease-in-out infinite;
+      z-index: -2;
+      filter: blur(30px);
+    }
+
+    @keyframes auroraMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
+  <div class="aurora"></div>
+  <div class="ribbon">🎀</div>
+  <div class="hearts"></div>
+
   <div class="container">
     <h1>Prove that you are not a robot 🤖💜</h1>
     <form id="captchaForm">
@@ -90,16 +156,49 @@
       const answer = document.getElementById('answer').value.trim().toLowerCase();
 
       if (answer === 'kho gaye') {
-        messageDiv.style.color = '#00ffcc';
-        messageDiv.textContent = "Yeah, you got it 💖";
-        setTimeout(() => {
-          window.location.href = "nextpage.html"; // replace with your actual next page
-        }, 1500);
+        messageDiv.style.color = 'black';
+        messageDiv.textContent = "Yeah, you got it 💖 (Click me 🎈)";
+        messageDiv.style.cursor = 'pointer';
+
+        messageDiv.onclick = function() {
+          const balloon = document.createElement('div');
+          balloon.textContent = '🎈';
+          balloon.style.position = 'absolute';
+          balloon.style.fontSize = '40px';
+          balloon.style.left = '50%';
+          balloon.style.top = '50%';
+          balloon.style.transform = 'translate(-50%, -50%)';
+          document.body.appendChild(balloon);
+
+          setTimeout(() => {
+            balloon.style.transition = 'transform 0.7s ease, opacity 0.5s';
+            balloon.style.transform = 'translate(-50%, -200%)';
+            balloon.style.opacity = '0';
+          }, 100);
+
+          setTimeout(() => {
+            window.location.href = "nextpage.html";
+          }, 1500);
+        };
+
       } else {
-        messageDiv.style.color = '#ffcccc';
-        messageDiv.textContent = "It's quite close da 💔 Better luck next time!";
+        messageDiv.style.color = 'black';
+        messageDiv.textContent = "Ohh that's so close... but yet wrong 💔";
       }
     });
+
+    // Floating heart generator
+    const heartsContainer = document.querySelector('.hearts');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 400);
   </script>
 </body>
 </html>
