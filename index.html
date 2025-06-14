@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f8e1ff, #dcd0ff, #ffe6f7);
+      background: linear-gradient(135deg, #e6ccff, #d1b3ff);
       overflow-x: hidden;
       position: relative;
     }
@@ -35,26 +35,19 @@
 
     .main-heading {
       text-align: center;
-      font-size: 32px;
-      color: #ff1493;
-      margin-top: 30px;
+      font-size: 34px;
+      color: #6a0dad;
+      margin-top: 20px;
       font-weight: bold;
       animation: fadeIn 1.5s ease-in-out;
     }
 
-    .title {
+    .robot-line {
       text-align: center;
       font-size: 28px;
       color: #4b0082;
-      padding: 10px 10px 10px;
+      font-weight: bold;
       animation: fadeIn 2s ease-out;
-    }
-
-    .title span {
-      display: block;
-      font-size: 20px;
-      color: #6a0dad;
-      margin-top: 10px;
     }
 
     .theme-img {
@@ -76,8 +69,8 @@
 
     .container {
       max-width: 700px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
       margin: 30px auto;
       padding: 30px;
       border-radius: 20px;
@@ -137,22 +130,41 @@
       from { transform: translateY(-50px); opacity: 1; }
       to { transform: translateY(100vh); opacity: 0; }
     }
+
+    .floating-heart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      animation: floatHeart 5s infinite ease-in-out;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <div class="aurora-bg"></div>
+  <audio autoplay loop>
+    <source src="https://docs.google.com/uc?export=open&id=1nURlWbDRBcoXYzh1WcoRznFPZ9F2TlvN" type="audio/mp3">
+  </audio>
 
-  <h1 class="main-heading">✨ First Step Towards Core Memories ✨</h1>
+  <div class="floating-heart">❤️❤️🎀❤️</div>
 
-  <h1 class="title">
-    Mohit and Thara 💞<br>
-    <span>He fell first, but I fell harder 💘</span>
-  </h1>
-
-  <img class="theme-img" src="https://i.pinimg.com/originals/23/f3/53/23f353a336a47d0c1f2a4a3e849b78e0.gif" alt="Rapunzel blowing candle">
+  <h1 class="main-heading">🔑 Key to Core Memories</h1>
+  <h2 class="robot-line">🤖 Prove if you are not a robot</h2>
 
   <div class="container">
-    <div class="story">
+    <div class="message" id="message">Click below to prove you're not a robot 🤖</div>
+    <form id="captchaForm" style="text-align:center; margin-top: 20px;">
+      <input type="text" id="answer" placeholder="What is our favourite song?">
+      <button type="submit">Confirm I'm not a robot 💗</button>
+    </form>
+
+    <div class="story" id="loveStory" style="display:none;">
       Even though we were in the same division in 4th and 5th standard 🏫,<br>
       even though we travelled together in KRK 🚌,<br>
       even though our sweet senior chechis shipped us 💌 and already married us with leaves 🌿🍃,<br>
@@ -167,13 +179,8 @@
       because I basically made you confess indirectly through Truth or Dare 😂🎲.<br><br>
 
       But hey Sachutty, I know it hasn’t always been easy for you... but listen...<br>
-      Your Vava is **always rooting for you** 🌈💖🌻💪✨
+      Your Vava is <strong>always rooting for you</strong> 🌈💖🌻💪✨
     </div>
-    <div class="message" id="message">Click below to prove you're not a robot 🤖</div>
-    <form id="captchaForm" style="text-align:center; margin-top: 20px;">
-      <input type="text" id="answer" placeholder="What is our favourite song?">
-      <button type="submit">Confirm I'm not a robot 💗</button>
-    </form>
   </div>
 
   <div class="chocolates" id="chocolates"></div>
@@ -182,6 +189,7 @@
     const form = document.getElementById('captchaForm');
     const messageDiv = document.getElementById('message');
     const chocolates = document.getElementById('chocolates');
+    const loveStory = document.getElementById('loveStory');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -189,6 +197,8 @@
 
       if (answer === 'kho gaye') {
         messageDiv.textContent = "Yeah, you got it 💖 Balloons incoming!";
+        loveStory.style.display = "block";
+
         const balloon = document.createElement('div');
         balloon.className = 'balloon';
         balloon.textContent = '🎈';
@@ -206,7 +216,7 @@
 
         setTimeout(() => {
           window.location.href = "nextpage.html";
-        }, 2000);
+        }, 4000);
       } else {
         messageDiv.textContent = "Ohh that's so close... but yet wrong 💔";
       }
