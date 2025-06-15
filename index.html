@@ -222,6 +222,193 @@
       }
     }
     setInterval(createRaindrops, 1000);
+    function checkNickname() {
+  const nicknameInput = document.getElementById("nicknameInput").value.trim().toLowerCase();
+  const result = document.getElementById("nicknameResult");
+
+  if (nicknameInput === "achu") {
+    result.textContent = "Yesss 💕 You're absolutely right!";
+    setTimeout(() => {
+      document.getElementById("nicknamePage").style.display = "none";
+      document.getElementById("corePage").style.display = "block";
+    }, 1500);
+  } else {
+    result.textContent = "Oops... try again cutie! 💔";
+  }
+}
   </script>
+  <!-- Nickname CAPTCHA Page (2nd checkpoint) -->
+<div id="nicknamePage" style="display: none; text-align: center; padding-top: 100px; font-family: 'Baloo 2', cursive; background-color: #fbe9f9; min-height: 100vh;">
+  <h2>What does he call her as a nickname?</h2>
+  <input type="text" id="nicknameInput" placeholder="Type the nickname..." style="padding: 10px; font-size: 1.2em; border-radius: 8px;">
+  <button onclick="checkNickname()" style="padding: 10px 20px; font-size: 1.1em; margin-left: 10px; background-color: #d08ff5; border: none; color: white; border-radius: 8px;">Submit</button>
+  <p id="nicknameResult" style="margin-top: 20px; font-size: 1.3em;"></p>
+</div>
+<iframe id="corePage" src="core-memories.html" style="display: none; width: 100%; height: 100vh; border: none;"></iframe> <!-- Page 3 - Core Memories -->
+<div id="coreMemories" style="display:none;">
+  <div class="memory-container">
+    <div class="heading">Core Memories 🌛</div>
+    <div class="quote">Drag each memory to leave the love behind...</div>
+  </div>
+
+  <div class="images">
+    <img src="./assets/cute-heart.webp" class="drag" style="z-index: 6;" />
+    <img src="./assets/Screenshot1.png" class="drag" style="z-index: 5;" />
+    <img src="./assets/Screenshot2.png" class="drag" style="z-index: 4;" />
+    <img src="./assets/Screenshot3.png" class="drag" style="z-index: 3;" />
+    <img src="./assets/Screenshot4.png" class="drag" style="z-index: 2;" />
+    <img src="./assets/Screenshot5.png" class="drag" style="z-index: 1;" />
+  </div>
+
+  <footer>your vaava is rooting for you, always have and always will 💜</footer>
+
+  <audio autoplay loop>
+    <source src="./assets/sweet-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<style>
+  #coreMemories {
+    background-color: #e6d8f5;
+    color: #4d2c4f;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 999;
+  }
+
+  .memory-container {
+    text-align: center;
+    padding: 30px 10px 10px;
+    z-index: 100;
+    position: relative;
+  }
+
+  .heading {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5em;
+    margin-bottom: 10px;
+  }
+
+  .quote {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.6em;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .images {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .images img {
+    width: 300px;
+    border-radius: 20px;
+    position: absolute;
+    top: 180px;
+    left: calc(50% - 150px);
+    cursor: grab;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4em;
+    color: #4d2c4f;
+    z-index: 10;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .chocolate {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url('./assets/chocolate.png') no-repeat center;
+    background-size: contain;
+    animation: floatDown 10s linear forwards;
+    opacity: 0.9;
+  }
+
+  @keyframes floatDown {
+    0% {
+      transform: translateY(-60px);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  // Show Page 3 after correct nickname
+  function checkNickname() {
+    const input = document.getElementById("nickname").value.trim().toLowerCase();
+    if (input === "achu") {
+      document.getElementById("nicknamePage").style.display = "none";
+      document.getElementById("coreMemories").style.display = "block";
+    } else {
+      alert("Wrong nickname 💔 Try again!");
+    }
+  }
+
+  // Drag functionality
+  const draggables = document.querySelectorAll(".drag");
+
+  draggables.forEach((img) => {
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    img.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - img.offsetLeft;
+      offsetY = e.clientY - img.offsetTop;
+      img.style.zIndex = 1000;
+      img.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        img.style.left = e.clientX - offsetX + "px";
+        img.style.top = e.clientY - offsetY + "px";
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      img.style.cursor = "grab";
+    });
+  });
+
+  // Floating chocolate
+  const createChoco = () => {
+    const choco = document.createElement("div");
+    choco.classList.add("chocolate");
+    choco.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(choco);
+    setTimeout(() => choco.remove(), 11000);
+  };
+
+  setInterval(() => {
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createChoco, i * 100);
+    }
+  }, 10000);
+</script>
 </body>
 </html>
