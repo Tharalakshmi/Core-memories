@@ -182,7 +182,74 @@
     <div class="heading">Our Sweet Memories</div>
     <div class="quote">Your vaava is rooting for you, always have and always will 💜</div>
   </div>
+<div id="captchaSection">
+      <p style="margin-bottom: 8px; color: #000; font-weight: bold;">What does Mohit call you?</p>
+      <input type="text" id="nicknameInput" placeholder="Enter nickname (e.g., achu)" />
+      <button onclick="unlockMemories()">Unlock Memories</button>
+    </div>
+  </div>
 
+  <!-- CORE MEMORIES SECTION -->
+  <div class="memory-container" id="memoryPage">
+    <img src="./assets/mohit_1.png" class="drag" style="top: 60px; left: 80px; z-index: 5;" />
+    <img src="./assets/mohit_2.png" class="drag" style="top: 200px; left: 250px; z-index: 4;" />
+    <img src="./assets/mohit_3.png" class="drag" style="top: 400px; left: 100px; z-index: 3;" />
+    <img src="./assets/mohit_4.png" class="drag" style="top: 150px; left: 500px; z-index: 6;" />
+    <img src="./assets/mohit_5.png" class="drag" style="top: 300px; left: 350px; z-index: 2;" />
+
+    <!-- Floating Chocolates -->
+    <img src="./assets/choco1.png" class="choco" style="top: 90%; left: 20%;" />
+    <img src="./assets/choco2.png" class="choco" style="top: 92%; left: 40%;" />
+    <img src="./assets/choco3.png" class="choco" style="top: 94%; left: 60%;" />
+
+    <!-- Background music -->
+    <audio autoplay loop>
+      <source src="./assets/love-music.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <script>
+    const nicknameCorrect = "achu";
+    const input = document.getElementById("nicknameInput");
+    const memoryPage = document.getElementById("memoryPage");
+
+    function unlockMemories() {
+      if (input.value.trim().toLowerCase() === nicknameCorrect) {
+        document.querySelector(".container").style.display = "none";
+        memoryPage.style.display = "block";
+      } else {
+        alert("Nope 😔 Try again");
+      }
+    }
+
+    // Drag functionality
+    const drags = document.querySelectorAll(".drag");
+    drags.forEach(el => {
+      el.addEventListener("mousedown", mouseDown);
+
+      function mouseDown(e) {
+        e.preventDefault();
+        let shiftX = e.clientX - el.getBoundingClientRect().left;
+        let shiftY = e.clientY - el.getBoundingClientRect().top;
+
+        function moveAt(pageX, pageY) {
+          el.style.left = pageX - shiftX + 'px';
+          el.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(e) {
+          moveAt(e.pageX, e.pageY);
+        }
+
+        document.addEventListener("mousemove", onMouseMove);
+
+        el.onmouseup = function () {
+          document.removeEventListener("mousemove", onMouseMove);
+          el.onmouseup = null;
+        };
+      }
+
+      el.ondragstart = () => false;
   <div class="images">
     <img src="./assets/cute-heart.webp" class="drag" style="z-index: 6;" />
     <img src="./assets/Screenshot1.png" class="drag" style="z-index: 5;" />
@@ -376,6 +443,12 @@
   </div>
 
   <footer>your vaava is rooting for you, always have and always will 💜</footer>
+
+  <a href="core-memories.html">
+  <button style="padding: 12px 25px; font-size: 18px; border-radius: 10px; background-color: #e91e63; color: white; border: none; cursor: pointer;">
+    Go to Core Memories 💞
+  </button>
+</a>
 
   <audio autoplay loop>
     <source src="./assets/sweet-love.mp3" type="audio/mp3">
