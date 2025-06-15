@@ -177,6 +177,122 @@
   </div>
 
   <button id="scrollDownBtn">Scroll to Love Note 💌</button>
+  <div id="coreMemories" style="display: none">
+  <div class="memory-container">
+    <div class="heading">Our Sweet Memories</div>
+    <div class="quote">Your vaava is rooting for you, always have and always will 💜</div>
+  </div>
+
+  <div class="images">
+    <img src="./assets/cute-heart.webp" class="drag" style="z-index: 6;" />
+    <img src="./assets/Screenshot1.png" class="drag" style="z-index: 5;" />
+    <img src="./assets/Screenshot2.png" class="drag" style="z-index: 4;" />
+    <img src="./assets/Screenshot3.png" class="drag" style="z-index: 3;" />
+    <img src="./assets/Screenshot4.png" class="drag" style="z-index: 2;" />
+    <img src="./assets/Screenshot5.png" class="drag" style="z-index: 1;" />
+  </div>
+
+  <audio autoplay loop>
+    <source src="./assets/sweet-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="main">
+    <div class="paper paper1">
+      <img src="./assets/heart-svgrepo-com.svg" alt="heart icon" />
+    </div>
+    <div class="paper paper2">
+      <p>How can someone be so</p>
+      <p><strong style="color: red;">Cute</strong> 🥺</p>
+    </div>
+    <div class="paper paper3">
+      <p style="font-style: italic;">Mohit 🦜</p>
+      <p>U r one of the most caring person</p>
+    </div>
+    <div class="paper paper4">
+      <p>and I've fallen deeply in</p>
+      <p style="color: crimson;">LOVE with U !!</p>
+    </div>
+    <div class="paper paper5">
+      <p>Will U let me be Ur</p>
+      <p>Partner in Crime? &hearts;</p>
+    </div>
+    <div class="paper paper6">
+      <img src="./assets/mohit_1.JPG" alt="Mohit, I Love U ">
+    </div>
+    <div class="paper paper7">
+      <img src="./assets/mohit_2.JPG" alt="Mohit, I Love U ">
+    </div>
+    <div class="paper paper8">
+      <img src="./assets/mohit_3.JPG" alt="Mohit, I Love U ">
+    </div>
+    <div class="paper paper9">
+      <img src="./assets/mohit_4.JPG" alt="Mohit, I Love U ">
+    </div>
+    <div class="paper paper10">
+      <img src="./assets/mohit_5.JPG" alt="Mohit, I Love U ">
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/thara" target="_blank">
+      <p>Made with &hearts; by Thara</p>
+    </a>
+  </footer>
+</div>
+
+<script>
+  function checkNickname() {
+    const input = document.getElementById("nickname").value.trim().toLowerCase();
+    if (input === "achu") {
+      document.getElementById("nicknamePage").style.display = "none";
+      document.getElementById("coreMemories").style.display = "block";
+    } else {
+      alert("Wrong nickname 💔 Try again!");
+    }
+  }
+
+  const draggables = document.querySelectorAll(".drag");
+
+  draggables.forEach((img) => {
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    img.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - img.offsetLeft;
+      offsetY = e.clientY - img.offsetTop;
+      img.style.zIndex = 1000;
+      img.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        img.style.left = e.clientX - offsetX + "px";
+        img.style.top = e.clientY - offsetY + "px";
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      img.style.cursor = "grab";
+    });
+  });
+
+  const createChoco = () => {
+    const choco = document.createElement("div");
+    choco.classList.add("chocolate");
+    choco.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(choco);
+    setTimeout(() => choco.remove(), 11000);
+  };
+
+  setInterval(() => {
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createChoco, i * 100);
+    }
+  }, 10000);
+</script>
 
   <iframe width="0" height="0" style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/aqsaqueen/kabira-encore&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false" id="kabiraMusic"></iframe>
 
