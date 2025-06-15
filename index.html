@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Prove you are not a robot 🤖💜</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to bottom, #a084e8, #9e76ec);
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .floating-drop {
@@ -125,10 +129,22 @@
       display: none;
       z-index: 10;
     }
+
+    #scrollDownBtn {
+      display: none;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background-color: #d8b6ff;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1 style="text-align: center; color: white; margin-top: 20px;">✨ Key to Core Memories ✨</h1>
+
   <div class="container" id="captchaContainer">
     <h1>Prove that you are not a robot 🤖💜</h1>
     <label for="captcha">What is our common favourite song?</label>
@@ -160,6 +176,8 @@
     In every universe, in every lifetime, it’s still you.
   </div>
 
+  <button id="scrollDownBtn">Scroll to Love Note 💌</button>
+
   <iframe width="0" height="0" style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/aqsaqueen/kabira-encore&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false" id="kabiraMusic"></iframe>
 
   <iframe width="100%" height="166" style="display:none;" scrolling="no" frameborder="no" allow="autoplay" id="husnMusic" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-812830071/pulkodiyil&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
@@ -170,6 +188,7 @@
       const result = document.getElementById("result");
       const story = document.getElementById("loveStory");
       const popup = document.getElementById("popup");
+      const scrollBtn = document.getElementById("scrollDownBtn");
 
       if (input === "kho gaye") {
         result.textContent = "Yeah you got it 💖";
@@ -178,11 +197,17 @@
         popup.style.display = 'block';
         setTimeout(() => popup.style.display = 'none', 2000);
         document.getElementById("husnMusic").style.display = 'block';
+        scrollBtn.style.display = 'block';
       } else {
         result.textContent = "Ohh that's so close... but yet wrong 💔";
         story.style.display = "none";
+        scrollBtn.style.display = "none";
       }
     }
+
+    document.getElementById("scrollDownBtn").addEventListener("click", function () {
+      document.getElementById("loveStory").scrollIntoView({ behavior: "smooth" });
+    });
 
     function createRaindrops() {
       const count = 3;
