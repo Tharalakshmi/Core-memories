@@ -1,105 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prove You're Not a Robot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎴 Draggable Memories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Zeyada&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --main-bg: linear-gradient(135deg, #f4d9e7 0%, #c7b7f5 100%);
+      --rose: #f6b5cf;
+      --petal: #e7a6be;
+      --heart: #fa67a3;
+      --soft-glow: 0 0 18px #f6b5cf99, 0 0 28px #ecb3e699;
+      --glow: 0 0 18px #f8baff99, 0 0 34px #f9d6e099;
+      --core-mem: linear-gradient(120deg, #fff1 60%, #fa67a3 90%);
+      --particle: #eecffc;
+      --card-bg: rgba(255,255,255,0.8);
+    }
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #8a2be2, #dda0dd);
+    }
+    body {
+      min-height: 100vh;
+      background: var(--main-bg);
+      overflow-x: hidden;
+      position: relative;
+      font-family: 'Baloo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .security-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(120deg,#f8e1ef 40%,#e0c8fa 100%);
+      z-index: 99999;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      color: white;
+      justify-content: center;
     }
-
-    .container {
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    .security-content {
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--soft-glow);
+      padding: 40px 30px 30px 30px;
+      min-width: 310px;
       text-align: center;
+      position: relative;
     }
-
-    h1 {
-      font-size: 28px;
+    .security-content h1 {
+      font-family: 'Great Vibes', cursive;
+      color: #fa67a3;
+      font-size: 2.3em;
       margin-bottom: 20px;
-      color: #fff;
+      text-shadow: var(--soft-glow);
     }
-
-    label {
-      font-size: 18px;
+    .security-content label {
+      font-size: 1.2em;
+      color: #6e4a7e;
+      margin-bottom: 15px;
       display: block;
+    }
+    .security-content input {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      border-radius: 12px;
+      border: 1.5px solid #e7a6be;
+      width: 70%;
       margin-bottom: 10px;
+      outline: none;
+      background: #fff8;
+      box-shadow: 0 1px 7px #e8b3ff33;
+      transition: border 0.2s;
     }
-
-    input[type="text"] {
-      padding: 10px;
-      width: 80%;
-      border-radius: 10px;
+    .security-content button {
+      padding: 11px 34px;
+      border-radius: 18px;
+      background: var(--heart);
       border: none;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 10px 25px;
-      background-color: #fff;
-      border: none;
-      border-radius: 10px;
+      color: #fff;
+      font-size: 1.13em;
+      letter-spacing: 2px;
+      margin-top: 8px;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 16px;
-      color: #8a2be2;
-      transition: background 0.3s ease;
+      transition: background 0.22s, box-shadow 0.22s;
+      box-shadow: var(--soft-glow);
+      text-shadow: 0 0 8px #fff5;
+    }
+    .security-content .shake {
+      animation: shake 0.28s linear 1;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0);}
+      20% { transform: translateX(-7px);}
+      40% { transform: translateX(7px);}
+      60% { transform: translateX(-7px);}
+      80% { transform: translateX(7px);}
+      100% { transform: translateX(0);}
+    }
+    .security-heart {
+      font-size: 2.1em;
+      margin-bottom: 16px;
+      transition: transform 0.15s;
+      display: inline-block;
     }
 
-    button:hover {
-      background-color: #e6e6fa;
+    /* Floating hearts, petals, particles */
+    .floating-heart, .floating-petal, .floating-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 110;
+      opacity: 0.7;
+      animation: floaty 9s linear infinite;
+      will-change: transform, opacity;
+    }
+    @keyframes floaty {
+      0% {transform: translateY(0) scale(1);}
+      85% {opacity: 0.7;}
+      100% {transform: translateY(-120vh) scale(1.1); opacity: 0;}
+    }
+    .floating-heart {
+      color: #fa67a3;
+      font-size: 2.1em;
+      text-shadow: 0 0 12px #fa67a3a9;
+      opacity: 0.7;
+      filter: blur(0.3px);
+    }
+    .floating-petal {
+      width: 24px; height: 24px;
+      background: radial-gradient(circle at 30% 30%, #e7a6be 80%, #f6b5cf 100%);
+      border-radius: 60% 100% 80% 100%/100% 80% 60% 100%;
+      opacity: 0.32;
+      box-shadow: 0 2px 18px #e7a6be44;
+    }
+    .floating-particle {
+      width: 11px; height: 11px;
+      background: radial-gradient(circle, var(--particle) 70%, #fff 100%);
+      border-radius: 50%;
+      opacity: 0.28;
+      filter: blur(1.5px);
     }
 
-    .message {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
+    /* Floating Quotes */
+    .floating-quote {
+      position: fixed;
+      left: 50%;
+      z-index: 110;
+      font-family: 'Zeyada', cursive;
+      font-size: 1.6em;
+      color: #f87cbb;
+      text-shadow: 0 4px 18px #fff8, 0 2px 14px #f8baff44;
+      opacity: 0.15;
+      pointer-events: none;
+      animation: quote-float 16s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes quote-float {
+      0% { transform: translate(-50%, 120vh); opacity: 0.16;}
+      9% { opacity: 0.41;}
+      30% { opacity: 0.5;}
+      70% { opacity: 0.5;}
+      91% { opacity: 0.35;}
+      100% { transform: translate(-50%, -14vh); opacity: 0.1;}
+    }
+
+    /* Avatars */
+    .avatars-right {
+      position: fixed;
+      right: 5vw;
+      bottom: 0;
+      height: 360px;
+      display: flex;
+      align-items: end;
+      z-index: 30;
+      pointer-events: none;
+    }
+    .avatar-girl, .avatar-boy {
+      position: relative;
+      height: 350px;
+      width: 148px;
+      margin-right: -30px;
+      margin-left: -30px;
+      opacity: 0.86;
+      z-index: 40;
+      will-change: filter;
+      /* Avatars will blink/smile via filter */
+    }
+    .avatar-girl img, .avatar-boy img {
+      width: 100%;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 18px #e7bcde44);
+      border-radius: 22px;
+    }
+
+    /* Memories */
+    .main-memories-zone {
+      margin: 0 auto;
+      margin-top: 80px;
+      max-width: 770px;
+      min-height: 540px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+      z-index: 15;
+    }
+    .mem-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 24px;
+      margin-right: 44px;
+      position: relative;
+      z-index: 17;
+    }
+    .mem-card {
+      width: 120px; height: 160px;
+      background: var(--card-bg);
+      border-radius: 19px;
+      box-shadow: 0 7px 28px #c7b7f544, 0 1.5px 8px #e8b3ff33;
+      border: 2.5px solid #e7a6be;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+      position: absolute;
+      cursor: grab;
+      transition: box-shadow 0.25s, transform 0.13s, border 0.18s, opacity 0.28s;
+      z-index: 15;
+      user-select: none;
+      will-change: transform, box-shadow, filter, opacity;
+      /* Start off in a row, will be placed soon */
+    }
+    .mem-card img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      background: #ffe3fa;
+      box-shadow: 0 2px 8px #e7bcde44;
+    }
+    .mem-card .mem-label {
+      font-size: 0.98em;
+      color: #7c458d;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      margin-bottom: 10px;
+      text-align: center;
+      width: 100%;
+      background: none;
+      padding: 0 4px;
+    }
+    .mem-card.core {
+      border: 2.5px solid #fa67a3;
+      box-shadow: 0 0 18px #fa67a399, 0 0 44px #f9d6e099, 0 8px 40px #f6b5cf55;
+      background: linear-gradient(120deg, #fff8 60%, #fa67a3 120%);
+      animation: coreGlow 2.7s ease-in-out infinite alternate;
+    }
+    @keyframes coreGlow {
+      0% { box-shadow: 0 0 16px #fa67a355, 0 0 24px #f9d6e055, 0 8px 40px #f6b5cf33;}
+      100% { box-shadow: 0 0 25px #fa67a399, 0 0 54px #f9d6e099, 0 12px 50px #f6b5cf55;}
+    }
+    .mem-card.fading {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.9s cubic-bezier(.4,0,.2,1);
+    }
+    .mem-card .whisper {
+      position: absolute;
+      left: 50%; bottom: 13px;
+      transform: translateX(-50%);
+      font-family: 'Zeyada', cursive;
+      font-size: 1em;
+      color: #e7a6be;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s;
+      white-space: nowrap;
+      z-index: 30;
+      text-shadow: 0 2px 10px #fff9, 0 0 15px #e7a6be33;
+    }
+    .mem-card:hover .whisper,
+    .mem-card.dragging .whisper {
+      opacity: 1;
+    }
+    /* Drop Zone */
+    .drop-zone {
+      width: 178px; height: 178px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff6 60%, #fa67a3 100%);
+      position: relative;
+      box-shadow: 0 0 40px #fa67a322, 0 0 80px #fa67a344;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 24px;
+      z-index: 20;
+      margin-top: 70px;
+      animation: dropzoneGlow 2.7s ease-in-out infinite alternate;
+    }
+    @keyframes dropzoneGlow {
+      0% { box-shadow: 0 1px 20px #fa67a333, 0 0 40px #fa67a355; }
+      100% { box-shadow: 0 1px 40px #fa67a399, 0 0 80px #fa67a399; }
+    }
+    .drop-zone svg {
+      width: 138px; height: 138px;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      filter: drop-shadow(0 0 34px #fa67a3aa);
+      opacity: 0.78;
+    }
+    .drop-zone .drop-count {
+      position: absolute;
+      left: 50%; top: 83%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 1.2em;
+      font-family: 'Baloo 2', cursive;
+      text-shadow: 0 0 8px #fa67a3, 0 0 24px #fff;
+      z-index: 4;
+    }
+    .final-message {
+      position: fixed;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10000;
+      background: linear-gradient(120deg, #fff7 60%, #fa67a3 120%);
+      border-radius: 32px;
+      box-shadow: 0 0 44px #fa67a344;
+      padding: 54px 38px 48px 38px;
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      color: #6a1b9a;
+      font-size: 1.28em;
+      display: none;
+      animation: heartblast 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes heartblast {
+      0% { transform: scale(0.7) translate(-50%, -50%); opacity: 0;}
+      70% { transform: scale(1.1) translate(-50%, -50%); opacity: 1;}
+      100% { transform: scale(1) translate(-50%, -50%);}
+    }
+    .final-message .big-heart {
+      font-size: 3em;
+      display: block;
+      margin-bottom: 12px;
+      color: #fa67a3;
+      text-shadow: 0 0 40px #fa67a399, 0 0 70px #fff;
+      animation: heartbeat 1.6s infinite alternate;
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1);}
+      50% { transform: scale(1.16);}
+      100% { transform: scale(1);}
+    }
+    .final-message button {
+      margin-top: 32px;
+      padding: 14px 40px;
+      border-radius: 18px;
+      border: none;
+      background: linear-gradient(90deg, #fa67a3 60%, #f6b5cf 100%);
+      color: #fff;
+      font-size: 1.14em;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      letter-spacing: 2px;
+      font-weight: 700;
+      box-shadow: 0 2px 20px #fa67a355;
+      cursor: pointer;
+      transition: background 0.22s, box-shadow 0.22s;
+    }
+
+    @media (max-width: 900px) {
+      .main-memories-zone { flex-direction: column; align-items: center; }
+      .mem-cards { margin-right: 0; }
+      .drop-zone { margin-left: 0; margin-top: 34px; }
+      .avatars-right { right: 0; left: 0; justify-content: center;}
+    }
+    @media (max-width: 600px) {
+      .main-memories-zone { min-height: 440px; }
+      .mem-cards { grid-gap: 10vw; }
+      .mem-card { width: 88vw; min-width: 100px; }
+      .drop-zone { width: 128px; height: 128px;}
+      .drop-zone svg { width: 99px; height: 99px;}
+      .avatars-right { height: 170px; }
+      .avatar-girl, .avatar-boy { height: 165px; width: 70px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Prove that you are not a robot 🤖💜</h1>
-    <form id="captchaForm">
-      <label for="answer">What is our common favourite song?</label>
-      <input type="text" id="answer" name="answer" placeholder="Type here...">
+  <!-- Security Nickname Modal -->
+  <div class="security-modal" id="securityModal">
+    <div class="security-content">
+      <div class="security-heart" id="securityHeart">💗</div>
+      <h1>Only my love can enter</h1>
+      <label for="nicknameInp">What do you call me?</label>
+      <input type="text" id="nicknameInp" placeholder="Type nickname..." autocomplete="off" />
       <br>
-      <button type="submit">Submit</button>
-      <div class="message" id="message"></div>
-    </form>
+      <button onclick="checkNickname()">Enter</button>
+      <div id="securityFail" style="color:#fa67a3;margin-top:10px;height:22px;"></div>
+    </div>
   </div>
 
+  <!-- Floating hearts, petals, particles -->
+  <div id="floaters"></div>
+  <!-- Floating Quotes -->
+  <div class="floating-quote" style="animation-delay:2s;top:22vh;">7th July 🌸</div>
+  <div class="floating-quote" style="animation-delay:8s;top:34vh;">13th Aug 💜</div>
+  <div class="floating-quote" style="animation-delay:12s;top:62vh;">“Always us, in every universe.”</div>
+
+  <!-- Anime Avatars, right side -->
+  <div class="avatars-right">
+    <div class="avatar-girl">
+      <img id="girlAvatar" src="https://i.ibb.co/FgYZxps/girl-avatar.png" alt="Thara, girl avatar"
+        style="filter:brightness(1.03) contrast(1.03);"/>
+    </div>
+    <div class="avatar-boy">
+      <img id="boyAvatar" src="https://i.ibb.co/1JQ8TtN/boy-avatar.png" alt="Mohit, boy avatar"
+        style="filter:brightness(1.09) contrast(1.01);"/>
+    </div>
+  </div>
+
+  <!-- Main Memories Section -->
+  <div class="main-memories-zone" id="memoriesPage" style="display:none;">
+    <div class="mem-cards" id="memCards">
+      <!-- Six sample images/icons, label/core set in JS -->
+      <div class="mem-card core" data-id="1" style="left:0;top:0;">
+        <img src="./assets/memory1.jpg" alt="Core Memory 1"/>
+        <div class="mem-label">KRK Bus</div>
+        <div class="whisper">“First met, shy smiles…”</div>
+      </div>
+      <div class="mem-card" data-id="2" style="left:135px;top:0;">
+        <img src="./assets/memory2.jpg" alt="Memory 2"/>
+        <div class="mem-label">Momo Shop</div>
+        <div class="whisper">“Momos after class!”</div>
+      </div>
+      <div class="mem-card core" data-id="3" style="left:270px;top:0;">
+        <img src="./assets/memory3.jpg" alt="Core Memory 2"/>
+        <div class="mem-label">Confession</div>
+        <div class="whisper">“7th July, your brave heart.”</div>
+      </div>
+      <div class="mem-card" data-id="4" style="left:25px;top:180px;">
+        <img src="./assets/memory4.jpg" alt="Memory 4"/>
+        <div class="mem-label">Rainy Walk</div>
+        <div class="whisper">“Shared an umbrella…”</div>
+      </div>
+      <div class="mem-card core" data-id="5" style="left:160px;top:180px;">
+        <img src="./assets/memory5.jpg" alt="Core Memory 3"/>
+        <div class="mem-label">13th Aug</div>
+        <div class="whisper">“You said yes 💖”</div>
+      </div>
+      <div class="mem-card" data-id="6" style="left:295px;top:180px;">
+        <img src="./assets/memory6.jpg" alt="Memory 6"/>
+        <div class="mem-label">Tulips</div>
+        <div class="whisper">“Petals everywhere…”</div>
+      </div>
+    </div>
+    <div class="drop-zone" id="dropZone">
+      <svg viewBox="0 0 100 100">
+        <path d="M50 82 Q20 60 20 40 Q20 20 50 32 Q80 20 80 40 Q80 60 50 82Z"
+          fill="#fa67a3" stroke="#fff" stroke-width="3"/>
+      </svg>
+      <div class="drop-count" id="dropCount">0/3</div>
+    </div>
+  </div>
+
+  <!-- Final message -->
+  <div class="final-message" id="finalMessage">
+    <span class="big-heart">💖</span>
+    <div style="font-family:'Great Vibes',cursive;font-size:2em;margin-bottom:12px;color:#fa67a3;">
+      You remembered us perfectly.<br>That’s why we’re forever 💖
+    </div>
+    <button onclick="window.location.reload()">Take Me Back 💫</button>
+  </div>
+
+  <!-- SoundCloud bg music (Pulkodiyil) + unmute fallback -->
+  <iframe width="0" height="0" style="display:none;" allow="autoplay" id="pageMusic"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1272813342&color=%239500ff&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+  </iframe>
+  <button id="unmuteBtn" style="display:none;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:99999;padding:12px 34px;background:#fa67a3;color:#fff;border:none;border-radius:16px;box-shadow:0 5px 20px #fa67a366;font-size:1.15em;font-family:'Baloo 2';">🔈 Unmute Music</button>
   <script>
-    const form = document.getElementById('captchaForm');
-    const messageDiv = document.getElementById('message');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const answer = document.getElementById('answer').value.trim().toLowerCase();
-
-      if (answer === 'kho gaye') {
-        messageDiv.style.color = '#00ffcc';
-        messageDiv.textContent = "Yeah, you got it 💖";
-        setTimeout(() => {
-          window.location.href = "nextpage.html"; // replace with your actual next page
-        }, 1500);
+    // --- Security Modal ---
+    function checkNickname() {
+      const val = document.getElementById('nicknameInp').value.trim().toLowerCase();
+      const fail = document.getElementById('securityFail');
+      const heart = document.getElementById('securityHeart');
+      if(val === "achu") {
+        document.getElementById('securityModal').style.display = 'none';
+        document.getElementById('memoriesPage').style.display = 'flex';
+        playBgMusic();
       } else {
-        messageDiv.style.color = '#ffcccc';
-        messageDiv.textContent = "It's quite close da 💔 Better luck next time!";
+        fail.textContent = "Wrong! Try again, my love.";
+        heart.classList.add('shake');
+        heart.textContent = "💔";
+        setTimeout(()=>{ heart.classList.remove('shake'); heart.textContent="💗"; }, 700);
+        setTimeout(()=>{ fail.textContent=""; }, 1800);
       }
+    }
+    document.getElementById('nicknameInp').addEventListener('keydown', function(e){
+      if(e.key==='Enter'){ checkNickname(); }
     });
+
+    // --- Floating hearts, petals, particles ---
+    function randomBetween(a, b) { return a + Math.random() * (b-a);}
+    function spawnFloaters() {
+      const floaters = document.getElementById('floaters');
+      // pink hearts
+      for(let i=0;i<8;i++){
+        let el = document.createElement('div');
+        el.className = 'floating-heart';
+        el.style.left = randomBetween(2,98)+'vw';
+        el.style.bottom = randomBetween(-7,12)+'vh';
+        el.style.fontSize = (randomBetween(1.6,2.75))+'em';
+        el.style.animationDuration = randomBetween(6,14)+'s';
+        el.textContent = "💕";
+        floaters.appendChild(el);
+      }
+      // petals
+      for(let i=0;i<6;i++){
+        let el = document.createElement('div');
+        el.className = 'floating-petal';
+        el.style.left = randomBetween(1,99)+'vw';
+        el.style.bottom = randomBetween(-4,10)+'vh';
+        el.style.transform = "rotate("+(randomBetween(-44,44))+"deg)";
+        el.style.animationDuration = randomBetween(6,12)+'s';
+        floaters.appendChild(el);
+      }
+      // glowing particles
+      for(let i=0;i<11;i++){
+        let el = document.createElement('div');
+        el.className = 'floating-particle';
+        el.style.left = randomBetween(1,99)+'vw';
+        el.style.bottom = randomBetween(2,24)+'vh';
+        el.style.animationDuration = randomBetween(5,13)+'s';
+        floaters.appendChild(el);
+      }
+    }
+    spawnFloaters();
+
+    // --- Memories Drag & Drop ---
+    const coreSet = ['1','3','5'];
+    let placedCores = [];
+    let draggedCard = null, offsetX=0, offsetY=0, origX=0, origY=0, origZ=10, origParent=null;
+
+    function makeDraggable(card) {
+      card.addEventListener('mousedown', dragStart);
+      card.addEventListener('touchstart', dragStart, {passive:false});
+    }
+    function dragStart(e) {
+      if (e.type === 'touchstart') {
+        draggedCard = e.target.closest('.mem-card');
+        let touch = e.touches[0];
+        let rect = draggedCard.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      } else {
+        draggedCard = e.target.closest('.mem-card');
+        offsetX = e.clientX - draggedCard.getBoundingClientRect().left;
+        offsetY = e.clientY - draggedCard.getBoundingClientRect().top;
+      }
+      origX = parseInt(draggedCard.style.left);
+      origY = parseInt(draggedCard.style.top);
+      origZ = draggedCard.style.zIndex;
+      draggedCard.classList.add('dragging');
+      window.addEventListener('mousemove', dragMove);
+      window.addEventListener('mouseup', dragEnd);
+      window.addEventListener('touchmove', dragMove, {passive:false});
+      window.addEventListener('touchend', dragEnd);
+    }
+    function dragMove(e) {
+      if (!draggedCard) return;
+      e.preventDefault && e.preventDefault();
+      let pageX, pageY;
+      if (e.type.startsWith('touch')) {
+        let touch = e.touches[0];
+        pageX = touch.clientX;
+        pageY = touch.clientY;
+      } else {
+        pageX = e.clientX;
+        pageY = e.clientY;
+      }
+      let container = document.getElementById('memCards').parentElement;
+      let bounds = container.getBoundingClientRect();
+      let x = pageX - bounds.left - offsetX;
+      let y = pageY - bounds.top - offsetY;
+      x = Math.max(0, Math.min(x, container.offsetWidth - draggedCard.offsetWidth));
+      y = Math.max(0, Math.min(y, container.offsetHeight - draggedCard.offsetHeight));
+      draggedCard.style.left = x + 'px';
+      draggedCard.style.top = y + 'px';
+      draggedCard.style.zIndex = 999;
+    }
+    function dragEnd(e) {
+      if (!draggedCard) return;
+      // Check if inside drop zone
+      const dropZone = document.getElementById('dropZone');
+      const dzRect = dropZone.getBoundingClientRect();
+      const cardRect = draggedCard.getBoundingClientRect();
+      const centerX = cardRect.left + cardRect.width/2;
+      const centerY = cardRect.top + cardRect.height/2;
+      if(centerX > dzRect.left && centerX < dzRect.right && centerY > dzRect.top && centerY < dzRect.bottom){
+        // Dropped in drop zone!
+        if(coreSet.includes(draggedCard.dataset.id)) {
+          if (!placedCores.includes(draggedCard.dataset.id)) {
+            placedCores.push(draggedCard.dataset.id);
+            // Place in drop zone
+            draggedCard.style.left = (dropZone.offsetLeft + Math.random()*30-10) + 'px';
+            draggedCard.style.top = (dropZone.offsetTop + Math.random()*30-10) + 'px';
+            draggedCard.style.zIndex = 111 + placedCores.length;
+            draggedCard.style.pointerEvents = 'none';
+            draggedCard.classList.add('core');
+            document.getElementById('dropCount').textContent = placedCores.length+'/3';
+            if (placedCores.length === 3) {
+              setTimeout(showFinalMessage, 1000);
+            }
+          }
+        } else {
+          // Incorrect card softly fade away
+          draggedCard.classList.add('fading');
+          setTimeout(()=>{ draggedCard.style.display='none'; }, 900);
+        }
+      } else {
+        // Snap back to original
+        draggedCard.style.left = origX+'px';
+        draggedCard.style.top = origY+'px';
+        draggedCard.style.zIndex = origZ;
+      }
+      draggedCard.classList.remove('dragging');
+      draggedCard = null;
+      window.removeEventListener('mousemove', dragMove);
+      window.removeEventListener('mouseup', dragEnd);
+      window.removeEventListener('touchmove', dragMove);
+      window.removeEventListener('touchend', dragEnd);
+    }
+
+    document.querySelectorAll('.mem-card').forEach(makeDraggable);
+
+    function showFinalMessage() {
+      document.getElementById('finalMessage').style.display = 'block';
+    }
+
+    // --- Avatars: blink/smile ---
+    setInterval(() => {
+      const girl = document.getElementById('girlAvatar');
+      girl.style.filter = 'brightness(1.01) contrast(1.05)';
+      setTimeout(()=>{ girl.style.filter = 'brightness(1.08) contrast(1.06)'; }, 650);
+    }, 3400);
+    setInterval(() => {
+      const boy = document.getElementById('boyAvatar');
+      boy.style.filter = 'brightness(1.07) contrast(1.01)';
+      setTimeout(()=>{ boy.style.filter = 'brightness(1.09) contrast(1.05)'; }, 1100);
+    }, 5100);
+
+    // --- BG Music Fallback Unmute ---
+    function playBgMusic(){
+      const i = document.getElementById('pageMusic');
+      i.style.display = 'block';
+      setTimeout(()=>{
+        if(i.contentWindow){ // try to trigger play
+          document.getElementById('unmuteBtn').style.display = 'block';
+        }
+      }, 3500);
+    }
+    document.getElementById('unmuteBtn').onclick = function(){
+      document.getElementById('pageMusic').style.display = 'block';
+      this.style.display = 'none';
+    };
+
+    // --- Rain (dreamy) ---
+    function spawnDreamyRain(){
+      for(let i=0;i<18;i++){
+        let drop = document.createElement('div');
+        drop.className = 'raindrop';
+        drop.style.left = randomBetween(1,99)+'vw';
+        drop.style.width = (6 + Math.random()*3) + 'px';
+        drop.style.height = (13 + Math.random()*6) + 'px';
+        drop.style.opacity = (0.12 + Math.random() * 0.18).toFixed(2);
+        drop.style.animationDuration = (7.2 + Math.random()*2.2).toFixed(2) + "s";
+        document.body.appendChild(drop);
+        setTimeout(()=>{ drop.remove(); }, 12000);
+      }
+    }
+    setInterval(spawnDreamyRain, 1800);
   </script>
 </body>
 </html>
