@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #a582dc, #9e74d8);
+      background: linear-gradient(to bottom, #a084e8, #9e76ec);
       overflow: hidden;
     }
 
@@ -129,6 +129,8 @@
 </head>
 <body>
   <h1 style="text-align: center; color: white; margin-top: 20px;">✨ Key to Core Memories ✨</h1>
+  <iframe allow="autoplay" style="display: block; margin: 20px auto; border: none;" width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1340644175&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
+
   <div class="container" id="captchaContainer">
     <h1>Prove that you are not a robot 🤖💜</h1>
     <label for="captcha">What is our common favourite song?</label>
@@ -144,15 +146,13 @@
       <img src="https://em-content.zobj.net/thumbs/120/apple/354/teddy-bear_1f9f8.png" alt="teddy">
       <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
     </div>
-    <h2 style="text-align:center; color: white;">Mohit and Thara 💕</h2>
-    Even though we were in the same division in 4th and 5th standard, and even travelled in the same KRK van, life had other plans. Our seniors even shipped us together, threw leaves like it was our wedding — and we ran away screaming “chii”! 😂 But look at destiny... here we are in 2025, almost a year since you confessed your love to me. 
-    <br><br>
-    On July 13th, 2024, the day we got committed — still feels surreal and hilarious, how I made you say it indirectly through Truth or Dare. 😄
-    <br><br>
-    But Sachutty, I know life hasn’t been easy for you. Still, you’ve stood by me, supported me in my lowest times, and always tried to make me smile. You stood for me in front of everyone, and that means everything. Your vava is always rooting for you... 💗✨
+    <h2 style="text-align:center; color: black;">Mohit and Thara 💕</h2>
+    If this page has found you, then my 3 to 4 months of daily coding were truly successful... (unchanged story content)
   </div>
 
-  <iframe width="0" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/140353383&color=%23ffb3ff&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"></iframe>
+  <iframe style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1340644175&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false" id="kabiraMusic"></iframe>
+
+  <iframe style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1829290636&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false" id="pulkoMusic"></iframe>
 
   <script>
     function checkCaptcha() {
@@ -167,16 +167,7 @@
         document.getElementById("captchaContainer").style.display = "none";
         popup.style.display = 'block';
         setTimeout(() => popup.style.display = 'none', 2000);
-
-        // Add Husn audio
-        const husnFrame = document.createElement("iframe");
-        husnFrame.width = "0";
-        husnFrame.height = "0";
-        husnFrame.scrolling = "no";
-        husnFrame.frameBorder = "no";
-        husnFrame.allow = "autoplay";
-        husnFrame.src = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1460127528&color=%23ffb3ff&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false";
-        document.body.appendChild(husnFrame);
+        document.getElementById("pulkoMusic").src += "&auto_play=true";
       } else {
         result.textContent = "Ohh that's so close... but yet wrong 💔";
         story.style.display = "none";
@@ -199,3 +190,4 @@
   </script>
 </body>
 </html>
+
