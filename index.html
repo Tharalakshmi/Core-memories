@@ -26,6 +26,7 @@
       overflow-x: hidden;
       transition: background 1s;
     }
+    /* Aurora Effect */
     .aurora {
       position: absolute;
       left: 50%;
@@ -49,6 +50,7 @@
       0% {transform: translateX(0);}
       100% {transform: translateX(-20vw);}
     }
+    /* Frosted glass */
     .frosted {
       background: var(--frost-bg);
       border: 2.5px solid var(--frost-border);
@@ -68,6 +70,7 @@
       0% { opacity: 0; transform: translateY(60px);}
       100% { opacity: 1; transform: translateY(0);}
     }
+    /* Page 1 Fonts and Question */
     .main-question {
       font-family: 'Baloo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 2.1em;
@@ -125,50 +128,24 @@
     }
     .success { color: #43a047; margin-top: 10px; font-weight: bold; }
     .error { color: #e53935; margin-top: 10px; font-weight: bold; }
-    /* Page 2: Love Story wider and left-aligned text */
-    .love-story-container {
-      position: relative;
-      width: 100%;
-      max-width: 620px;
-      margin: 0 auto 28px auto;
-      display: flex;
-      align-items: stretch;
-      justify-content: flex-start;
-    }
-    .love-story-bgimg {
-      position: absolute;
-      left: 0; top: 0;
-      width: 220px;
-      height: 330px;
-      opacity: 0.32;
-      z-index: 0;
-      background-position: left top;
-      background-repeat: no-repeat;
-      background-size: cover;
-      border-radius: 18px 0 0 18px;
-    }
+    /* Page 2: Love Story wider text */
     .love-story {
       background: rgba(255,255,255,0.18);
       border-radius: 18px;
-      padding: 22px 24px 22px 180px;
+      padding: 22px 18px;
       font-size: 1.17em;
       color: #26132e;
       line-height: 1.7;
-      margin-bottom: 0;
+      margin-bottom: 28px;
       box-shadow: 0 2px 16px #e7bcde55;
       animation: fadeInUp 1.2s both;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
       letter-spacing: 0.3px;
       font-weight: 500;
-      text-align: left;
-      z-index: 1;
-      position: relative;
-      min-height: 320px;
-      width: 100%;
     }
-    .love-story .illustration {
-      margin-bottom: 8px;
-    }
-    .love-story .illustration img {
+    .illustration img {
       width: 52px;
       margin: 0 10px 8px 10px;
       vertical-align: middle;
@@ -179,6 +156,7 @@
       0%, 100% { transform: translateY(0);}
       50% { transform: translateY(-13px);}
     }
+    /* Attractive Nickname Captcha */
     .nickname-captcha {
       background: linear-gradient(90deg, #fbc2eb 0%, #a6c1ee 100%);
       border-radius: 12px;
@@ -195,6 +173,7 @@
       letter-spacing: 1px;
       text-shadow: 0 2px 10px #fff5;
     }
+    /* Raindrops */
     .raindrop {
       position: fixed;
       z-index: 10000;
@@ -213,6 +192,7 @@
       90% { opacity: 0.7;}
       100% { transform: translateY(110vh); opacity: 0;}
     }
+    /* Page 3: Core Memories Paper Stack */
     .core-memories-container {
       max-width: 500px;
       margin: 0 auto;
@@ -265,8 +245,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-clip: padding-box;
-      overflow: hidden;
     }
     .paper img {
       width: 100%;
@@ -274,7 +252,6 @@
       box-shadow: 0 2px 8px #e7bcde44;
       border: none;
       display: block;
-      object-fit: cover;
     }
     .paper:active {
       box-shadow: 0 2px 15px #e8b3ff99, 0 0 4px #fff;
@@ -290,11 +267,6 @@
       letter-spacing: 1px;
       text-align: center;
       animation: fadeInUp 1.2s both;
-    }
-    @media (max-width: 900px) {
-      .love-story-container { flex-direction: column; }
-      .love-story { padding: 28px 18px 22px 18px; min-height: 0; }
-      .love-story-bgimg { position: absolute; left: 50%; top: 0; width: 100%; height: 130px; opacity: 0.18; z-index: 0; border-radius: 18px 18px 0 0;}
     }
     @media (max-width: 600px) {
       .frosted { padding: 30px 5vw; max-width: 98vw;}
@@ -318,30 +290,23 @@
       <button onclick="checkSong()">Submit</button>
       <div id="songResult"></div>
     </div>
-    <!-- SoundCloud: Kho Gaye -->
-    <iframe width="0" height="0" style="display:none;" allow="autoplay" id="firstPageMusic"
-      src="https://w.soundcloud.com/player/?url=https%3A//on.soundcloud.com/Um4B7EVTCF01g38NTj&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-    </iframe>
   </div>
   <!-- Page 2: Love Story + Nickname Captcha -->
   <div id="page2" style="display:none; min-height:100vh;">
     <div class="frosted">
-      <div class="love-story-container">
-        <div class="love-story-bgimg" style="background-image:url('images/image1.png');"></div>
-        <div class="love-story">
-          <div class="illustration">
-            <img src="https://em-content.zobj.net/thumbs/120/apple/354/teddy-bear_1f9f8.png" alt="teddy">
-            <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
-          </div>
-          <h2 style="font-family:'Baloo 2',cursive;font-size:2em;color:#754b9a;margin:0 0 14px 0;">Mohit and Thara 💕</h2>
-          If this page has found you, then my 3 to 4 months of daily coding were truly successful. Because this was made just for you, Sachutty!! Do you remember how we were in the same division in fourth and fifth standard, sat together in the same traveller KRK? And how those senior chechis used to tease us by pretending to marry us by plucking leaves through the traveller window and throwing them on our heads like it was some dramatic ceremony!! We both shouted chii and ran away, laughing and hiding in embarrassment. But little did we know, destiny was smiling quietly that day!!<br><br>
-          And now here we are in 2025. It has almost been a year since you confessed your love to me!! Since then, everything has changed. You became my constant, my peace, my strongest support!! You stayed with me through every low, held me even when you were tired, and gave me the kind of love that speaks louder in silence than in words!!<br><br>
-          You stood by me when no one else did. You tried every day to bring even the smallest smile to my face!! I have seen your efforts, I have felt your love, and I hold it close always. And how can I ever forget 7th of July, the evening you proposed with that shy yet brave heart!! And 13th of July, the moment I accepted your request and gave this love a name!!<br><br>
-          That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!!<br><br>
-          Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!!<br><br>
-          This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!!<br><br>
-          In every universe, in every lifetime, it’s still you.
+      <div class="love-story">
+        <div class="illustration">
+          <img src="https://em-content.zobj.net/thumbs/120/apple/354/teddy-bear_1f9f8.png" alt="teddy">
+          <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
         </div>
+        <h2 style="font-family:'Baloo 2',cursive;font-size:2em;color:#754b9a;">Mohit and Thara 💕</h2>
+        If this page has found you, then my 3 to 4 months of daily coding were truly successful. Because this was made just for you, Sachutty!! Do you remember how we were in the same division in fourth and fifth standard, sat together in the same traveller KRK? And how those senior chechis used to tease us by pretending to marry us by plucking leaves through the traveller window and throwing them on our heads like it was some dramatic ceremony!! We both shouted chii and ran away, laughing and hiding in embarrassment. But little did we know, destiny was smiling quietly that day!!<br><br>
+        And now here we are in 2025. It has almost been a year since you confessed your love to me!! Since then, everything has changed. You became my constant, my peace, my strongest support!! You stayed with me through every low, held me even when you were tired, and gave me the kind of love that speaks louder in silence than in words!!<br><br>
+        You stood by me when no one else did. You tried every day to bring even the smallest smile to my face!! I have seen your efforts, I have felt your love, and I hold it close always. And how can I ever forget 7th of July, the evening you proposed with that shy yet brave heart!! And 13th of July, the moment I accepted your request and gave this love a name!!<br><br>
+        That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!!<br><br>
+        Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!!<br><br>
+        This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!!<br><br>
+        In every universe, in every lifetime, it’s still you.
       </div>
       <div class="nickname-captcha">
         <span>✨ Attractive Captcha: <span style="color:#754b9a;">What does Mohit call Thara?</span> ✨</span>
@@ -351,10 +316,6 @@
         <button onclick="checkNickname()" style="font-size:1em;padding:10px 28px;">Unlock Memories</button>
         <div id="nickResult"></div>
       </div>
-      <!-- SoundCloud: 2nd page song -->
-      <iframe width="0" height="0" style="display:none;" allow="autoplay" id="secondPageMusic"
-        src="https://w.soundcloud.com/player/?url=https%3A//on.soundcloud.com/BzsbIDOUq1BX9X83Yt&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-      </iframe>
     </div>
   </div>
   <!-- Page 3: Core Memories/Draggable Paper Images -->
@@ -371,31 +332,20 @@
           <div class="paper paper5"><img src="./assets/mohit_5.png" alt="Memory 5"></div>
         </div>
         <div class="memory-caption">Your vaava is rooting for you, always have and always will 💜</div>
-        <!-- Core Memories Page Music -->
-        <iframe width="0" height="0" style="display:none;" allow="autoplay" id="thirdPageMusic"
-          src="https://w.soundcloud.com/player/?url=https%3A//on.soundcloud.com/YWEPLOduxAfiibzKXC&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-        </iframe>
+        <audio autoplay loop>
+          <source src="./assets/sweet-love.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
       </div>
     </div>
   </div>
   <script>
     // Page Navigation
-    let currentMusic = null;
     function showPage(id) {
       document.getElementById('page1').style.display = 'none';
       document.getElementById('page2').style.display = 'none';
       document.getElementById('page3').style.display = 'none';
       document.getElementById(id).style.display = 'block';
-      // Manage music playback
-      if (currentMusic) currentMusic.style.display = 'none';
-      if (id === 'page1') {
-        currentMusic = document.getElementById('firstPageMusic');
-      } else if (id === 'page2') {
-        currentMusic = document.getElementById('secondPageMusic');
-      } else if (id === 'page3') {
-        currentMusic = document.getElementById('thirdPageMusic');
-      }
-      if (currentMusic) currentMusic.style.display = 'block';
     }
     // Song captcha
     function checkSong() {
@@ -444,6 +394,7 @@
       const stack = document.querySelector('.main-papers');
       if (stack && papers.length > 0) {
         papers.forEach((paper, i) => {
+          // Stack each with a slight offset for initial look
           let offset = i * 12;
           paper.style.top = 45 + offset + 'px';
           paper.style.left = 25 + offset + 'px';
@@ -457,13 +408,11 @@
             paper.style.position = 'absolute';
             paper.style.zIndex = 99;
             function moveAt(pageX, pageY) {
+              // keep within parent (stack)
               let minX = stack.getBoundingClientRect().left;
               let minY = stack.getBoundingClientRect().top;
               let x = pageX - shiftX - minX;
               let y = pageY - shiftY - minY;
-              // Clamp to container
-              x = Math.max(0, Math.min(x, stack.offsetWidth - paper.offsetWidth));
-              y = Math.max(0, Math.min(y, stack.offsetHeight - paper.offsetHeight));
               paper.style.left = x + 'px';
               paper.style.top = y + 'px';
             }
@@ -479,8 +428,6 @@
           paper.ondragstart = () => false;
         });
       }
-      // Start music for page 1 by default
-      showPage('page1');
     });
   </script>
 </body>
