@@ -3,714 +3,599 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎴 Core Memories</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Zeyada&family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>Core Memories 💜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --main-bg: linear-gradient(135deg, #f4d9e7 0%, #c7b7f5 100%);
-      --rose: #f6b5cf;
-      --petal: #e7a6be;
-      --heart: #fa67a3;
-      --soft-glow: 0 0 18px #f6b5cf99, 0 0 28px #ecb3e699;
-      --glow: 0 0 18px #f8baff99, 0 0 34px #f9d6e099;
-      --core-mem: linear-gradient(120deg, #fff1 60%, #fa67a3 90%);
-      --particle: #eecffc;
-      --card-bg: rgba(255,255,255,0.80);
-    }
-    html, body {
-      height: 100%;
+    body {
       margin: 0;
       padding: 0;
-    }
-    body {
       min-height: 100vh;
-      background: var(--main-bg);
-      overflow-x: hidden;
-      position: relative;
       font-family: 'Baloo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .popper {
-      position: fixed;
-      left: 50%;
-      top: 50px;
-      transform: translateX(-50%);
-      z-index: 99999;
-      pointer-events: none;
-      display: none;
-    }
-    .popper span {
-      display: inline-block;
-      font-size: 2.4em;
-      margin: 0 2px;
-      animation: popper-burst 0.8s cubic-bezier(.61,2,.41,.91) forwards;
-    }
-    @keyframes popper-burst {
-      0% { opacity: 0; transform: translateY(0) scale(0.8);}
-      60% { opacity: 1; transform: translateY(-36px) scale(1.2);}
-      100% { opacity: 0; transform: translateY(-90px) scale(1.05);}
-    }
-    .security-modal {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(120deg,#f8e1ef 40%,#e0c8fa 100%);
-      z-index: 99999;
+      /* dreamy pastel gradient */
+      background: linear-gradient(120deg, #fce4ec 0%, #e1bee7 60%, #b2ebf2 100%);
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow-x: hidden;
+      min-width: 100vw;
+    }
+    /* --- PAGE 2: Love Story Responsive --- */
+    #page2-bg {
+      width: 100vw;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #f8bbd0 0%, #e1bee7 50%, #b2ebf2 100%);
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 0;
+      margin: 0;
     }
-    .security-content {
-      background: var(--card-bg);
-      border-radius: 28px;
-      box-shadow: var(--soft-glow);
-      padding: 50px 60px 36px 60px;
-      min-width: 360px;
-      text-align: center;
-      position: relative;
-      width: 95vw;
-      max-width: 540px;
-      margin: 0 auto;
-    }
-    .security-content h1 {
-      font-family: 'Great Vibes', cursive;
-      color: #fa67a3;
-      font-size: 2.3em;
-      margin-bottom: 20px;
-      text-shadow: var(--soft-glow);
-    }
-    .security-content label {
-      font-size: 1.2em;
-      color: #6e4a7e;
-      margin-bottom: 15px;
-      display: block;
-    }
-    .security-content input {
-      padding: 12px 24px;
-      font-size: 1.2em;
-      border-radius: 16px;
-      border: 2px solid #e7a6be;
-      width: 68%;
-      margin-bottom: 16px;
-      outline: none;
-      background: #fff8;
-      box-shadow: 0 1px 7px #e8b3ff33;
-      transition: border 0.2s;
-      text-align: center;
-      font-family: 'Baloo 2', cursive;
-    }
-    .security-content button {
-      padding: 14px 40px;
-      border-radius: 18px;
-      background: var(--heart);
-      border: none;
-      color: #fff;
-      font-size: 1.15em;
-      letter-spacing: 2px;
-      margin-top: 10px;
-      font-family: 'Baloo 2', cursive, sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.22s, box-shadow 0.22s;
-      box-shadow: var(--soft-glow);
-      text-shadow: 0 0 8px #fff5;
-    }
-    .security-content .shake {
-      animation: shake 0.28s linear 1;
-    }
-    @keyframes shake {
-      0% { transform: translateX(0);}
-      20% { transform: translateX(-7px);}
-      40% { transform: translateX(7px);}
-      60% { transform: translateX(-7px);}
-      80% { transform: translateX(7px);}
-      100% { transform: translateX(0);}
-    }
-    .security-heart {
-      font-size: 2.1em;
-      margin-bottom: 16px;
-      transition: transform 0.15s;
-      display: inline-block;
-    }
-    /* Floating stuff */
-    .floating-heart, .floating-petal, .floating-particle {
-      position: fixed;
-      pointer-events: none;
-      z-index: 110;
-      opacity: 0.7;
-      animation: floaty 9s linear infinite;
-      will-change: transform, opacity;
-    }
-    @keyframes floaty {
-      0% {transform: translateY(0) scale(1);}
-      85% {opacity: 0.7;}
-      100% {transform: translateY(-120vh) scale(1.1); opacity: 0;}
-    }
-    .floating-heart {
-      color: #fa67a3;
-      font-size: 2.1em;
-      text-shadow: 0 0 12px #fa67a3a9;
-      opacity: 0.7;
-      filter: blur(0.3px);
-    }
-    .floating-petal {
-      width: 24px; height: 24px;
-      background: radial-gradient(circle at 30% 30%, #e7a6be 80%, #f6b5cf 100%);
-      border-radius: 60% 100% 80% 100%/100% 80% 60% 100%;
-      opacity: 0.32;
-      box-shadow: 0 2px 18px #e7a6be44;
-    }
-    .floating-particle {
-      width: 11px; height: 11px;
-      background: radial-gradient(circle, var(--particle) 70%, #fff 100%);
-      border-radius: 50%;
-      opacity: 0.28;
-      filter: blur(1.5px);
-    }
-    /* Floating Quotes */
-    .floating-quote {
-      position: fixed;
-      left: 50%;
-      z-index: 110;
-      font-family: 'Zeyada', cursive;
-      font-size: 1.6em;
-      color: #f87cbb;
-      text-shadow: 0 4px 18px #fff8, 0 2px 14px #f8baff44;
-      opacity: 0.15;
-      pointer-events: none;
-      animation: quote-float 16s linear infinite;
-      white-space: nowrap;
-    }
-    @keyframes quote-float {
-      0% { transform: translate(-50%, 120vh); opacity: 0.16;}
-      9% { opacity: 0.41;}
-      30% { opacity: 0.5;}
-      70% { opacity: 0.5;}
-      91% { opacity: 0.35;}
-      100% { transform: translate(-50%, -14vh); opacity: 0.1;}
-    }
-    /* Avatars */
-    .avatars-right {
-      position: fixed;
-      right: 5vw;
-      bottom: 0;
-      height: 360px;
-      display: flex;
-      align-items: end;
-      z-index: 30;
-      pointer-events: none;
-    }
-    .avatar-girl, .avatar-boy {
-      position: relative;
-      height: 350px;
-      width: 148px;
-      margin-right: -30px;
-      margin-left: -30px;
-      opacity: 0.86;
-      z-index: 40;
-      will-change: filter;
-    }
-    .avatar-girl img, .avatar-boy img {
-      width: 100%;
-      height: auto;
-      user-select: none;
-      pointer-events: none;
-      filter: drop-shadow(0 6px 18px #e7bcde44);
+    .love-story-responsive {
+      background: rgba(255,255,255,0.96);
       border-radius: 22px;
+      box-shadow: 0 4px 32px #e8b3ff33, 0 10px 60px #e8b3ff22;
+      padding: 40px 48px;
+      font-size: 1.22em;
+      color: #6a3574;
+      line-height: 1.7;
+      margin: 48px auto 30px auto;
+      max-width: 700px;
+      min-width: 0;
+      width: 90vw;
+      text-align: center;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      transition: padding 0.25s, font-size 0.25s, width 0.25s;
+      overflow-wrap: break-word;
     }
-    /* Memories */
-    .main-memories-zone {
-      margin: 0 auto;
-      margin-top: 80px;
-      max-width: 1100px;
-      min-height: 540px;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: center;
-      position: relative;
-      z-index: 15;
-      width: 97vw;
+    .love-story-responsive h2 {
+      margin-top: 0.1em;
+      margin-bottom: 0.6em;
+      text-align: center;
+      color: #8952a0;
+      font-size: 2.1em;
+      text-shadow: 0 2px 16px #e8b3ff33;
+      font-weight: 700;
     }
-    .mem-cards {
-      position: absolute;
-      left: 0; top: 0; right: 0; bottom: 0;
+    .love-story-responsive .illustration {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .love-story-responsive .illustration img {
+      width: 54px;
+      margin: 0 12px 8px 12px;
+      vertical-align: middle;
+      filter: drop-shadow(0 2px 4px #fff8);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-13px);}
+    }
+    @media (max-width: 900px) {
+      .love-story-responsive {
+        padding: 32px 6vw;
+        width: 97vw;
+        font-size: 1.1em;
+      }
+    }
+    @media (max-width: 600px) {
+      #page2-bg { padding-top: 8vw; }
+      .love-story-responsive {
+        padding: 16px 3vw;
+        margin: 12vw auto 6vw auto;
+        width: 98vw;
+        font-size: 1em;
+      }
+      .love-story-responsive .illustration img { width: 38px; }
+    }
+    @media (max-width: 430px) {
+      .love-story-responsive {
+        padding: 10px 2vw;
+        font-size: 0.96em;
+      }
+    }
+    /* --- PAGE 3: Core Memories Polaroid Game --- */
+    .core-container {
       width: 100vw;
-      height: 75vh;
-      min-height: 460px;
-      pointer-events: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
-    .mem-card {
-      width: 120px; height: 160px;
-      background: var(--card-bg);
-      border-radius: 19px;
-      box-shadow: 0 7px 28px #c7b7f544, 0 1.5px 8px #e8b3ff33;
-      border: 2.5px solid #e7a6be;
+    .core-title {
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-size: 2.2em;
+      font-weight: 700;
+      margin: 35px 0 8px 0;
+      color: #6a1b9a;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 8px #fff6, 0 0 14px #e8b3ff66;
+      text-align: center;
+    }
+    .drag-instructions {
+      font-size: 1.07em;
+      color: #6a1b9a;
+      text-shadow: 0 2px 8px #fff6;
+      margin-bottom: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: center;
+      animation: fadeInUp 1.2s both;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(60px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    /* Polaroid frames */
+    .polaroid-area {
+      width: 100%;
+      max-width: 1100px;
+      min-height: 270px;
+      margin: 0 auto 36px auto;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .polaroid-frame {
+      width: 160px;
+      height: 200px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.68);
+      border: 2.5px solid #fff;
+      box-shadow: 0 8px 40px #b488e8bb, 0 1.5px 8px #e8b3ff88, 0 0 28px #fff8 inset;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
+      margin: 18px 8px 8px 8px;
+      transition: box-shadow 0.2s, transform 0.12s;
+      position: relative;
       overflow: hidden;
-      position: absolute;
-      cursor: grab;
-      transition: box-shadow 0.25s, transform 0.13s, border 0.18s, opacity 0.28s;
-      z-index: 15;
-      user-select: none;
-      will-change: transform, box-shadow, filter, opacity;
       pointer-events: auto;
+      animation: polaroidFloat 6s infinite ease-in-out;
     }
-    .mem-card img {
+    @keyframes polaroidFloat {
+      0%,100% { box-shadow:0 8px 40px #b488e8bb,0 1.5px 8px #e8b3ff88,0 0 28px #fff8 inset; transform:translateY(0);}
+      50% { box-shadow:0 20px 60px #b488e8cc,0 1.5px 18px #e8b3ffcc,0 0 50px #fff8 inset; transform:translateY(-12px);}
+    }
+    .polaroid-drop {
       width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 16px;
-      margin-bottom: 8px;
-      background: #ffe3fa;
-      box-shadow: 0 2px 8px #e7bcde44;
-    }
-    .mem-card .mem-label {
-      font-size: 0.98em;
-      color: #7c458d;
-      font-family: 'Baloo 2', cursive, sans-serif;
-      margin-bottom: 10px;
-      text-align: center;
-      width: 100%;
-      background: none;
-      padding: 0 4px;
-    }
-    .mem-card.core {
-      border: 2.5px solid #fa67a3;
-      box-shadow: 0 0 18px #fa67a399, 0 0 44px #f9d6e099, 0 8px 40px #f6b5cf55;
-      background: linear-gradient(120deg, #fff8 60%, #fa67a3 120%);
-      animation: coreGlow 2.7s ease-in-out infinite alternate;
-    }
-    @keyframes coreGlow {
-      0% { box-shadow: 0 0 16px #fa67a355, 0 0 24px #f9d6e055, 0 8px 40px #f6b5cf33;}
-      100% { box-shadow: 0 0 25px #fa67a399, 0 0 54px #f9d6e099, 0 12px 50px #f6b5cf55;}
-    }
-    .mem-card.fading {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.9s cubic-bezier(.4,0,.2,1);
-    }
-    .mem-card .whisper {
-      position: absolute;
-      left: 50%; bottom: 13px;
-      transform: translateX(-50%);
-      font-family: 'Zeyada', cursive;
-      font-size: 1em;
-      color: #e7a6be;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s;
-      white-space: nowrap;
-      z-index: 30;
-      text-shadow: 0 2px 10px #fff9, 0 0 15px #e7a6be33;
-    }
-    .mem-card:hover .whisper,
-    .mem-card.dragging .whisper {
-      opacity: 1;
-    }
-    .drop-zone {
-      width: 178px; height: 178px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #fff6 60%, #fa67a3 100%);
-      position: absolute;
-      right: 10vw;
-      top: 12vh;
-      box-shadow: 0 0 40px #fa67a322, 0 0 80px #fa67a344;
+      height: 78%;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 20;
-      animation: dropzoneGlow 2.7s ease-in-out infinite alternate;
+      border-radius: 18px 18px 0 0;
+      min-height: 135px;
+      background: transparent;
+      transition: background 0.2s;
+      position: relative;
     }
-    @keyframes dropzoneGlow {
-      0% { box-shadow: 0 1px 20px #fa67a333, 0 0 40px #fa67a355; }
-      100% { box-shadow: 0 1px 40px #fa67a399, 0 0 80px #fa67a399; }
+    .polaroid-frame.highlight {
+      box-shadow: 0 0 0 6px #e8b3ff66, 0 8px 40px #b488e8cc, 0 1.5px 8px #e8b3ff88;
+      background: rgba(255,255,255,0.89);
+      transform: scale(1.04);
     }
-    .drop-zone svg {
-      width: 138px; height: 138px;
-      position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      filter: drop-shadow(0 0 34px #fa67a3aa);
-      opacity: 0.78;
-    }
-    .drop-zone .drop-count {
-      position: absolute;
-      left: 50%; top: 83%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      font-size: 1.2em;
-      font-family: 'Baloo 2', cursive;
-      text-shadow: 0 0 8px #fa67a3, 0 0 24px #fff;
-      z-index: 4;
-    }
-    .final-message {
-      position: fixed;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10000;
-      background: linear-gradient(120deg, #fff7 60%, #fa67a3 120%);
-      border-radius: 32px;
-      box-shadow: 0 0 44px #fa67a344;
-      padding: 54px 38px 48px 38px;
+    .polaroid-label {
+      width: 100%;
       text-align: center;
-      font-family: 'Baloo 2', cursive;
-      color: #6a1b9a;
-      font-size: 1.28em;
-      display: none;
-      animation: heartblast 1.2s cubic-bezier(.4,0,.2,1);
-    }
-    @keyframes heartblast {
-      0% { transform: scale(0.7) translate(-50%, -50%); opacity: 0;}
-      70% { transform: scale(1.1) translate(-50%, -50%); opacity: 1;}
-      100% { transform: scale(1) translate(-50%, -50%);}
-    }
-    .final-message .big-heart {
-      font-size: 3em;
-      display: block;
-      margin-bottom: 12px;
-      color: #fa67a3;
-      text-shadow: 0 0 40px #fa67a399, 0 0 70px #fff;
-      animation: heartbeat 1.6s infinite alternate;
-    }
-    @keyframes heartbeat {
-      0% { transform: scale(1);}
-      50% { transform: scale(1.16);}
-      100% { transform: scale(1);}
-    }
-    .final-message button {
-      margin-top: 32px;
-      padding: 14px 40px;
-      border-radius: 18px;
-      border: none;
-      background: linear-gradient(90deg, #fa67a3 60%, #f6b5cf 100%);
-      color: #fff;
-      font-size: 1.14em;
-      font-family: 'Baloo 2', cursive, sans-serif;
-      letter-spacing: 2px;
+      font-size: 1.07em;
+      color: #7b619d;
       font-weight: 700;
-      box-shadow: 0 2px 20px #fa67a355;
+      letter-spacing: 1.5px;
+      background: rgba(255,255,255,0.85);
+      border-top: 1.5px solid #e8b3ff;
+      padding: 13px 0 11px 0;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      text-shadow: 0 1px 8px #e8b3ff44;
+      margin-top: auto;
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 2px 8px #fff6 inset;
+      user-select: none;
+      min-height: 30px;
+    }
+    /* Draggable photos - BIGGER, responsive */
+    .draggable-photos {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 24px auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      user-select: none;
+      position: relative;
+      z-index: 12;
+      gap: 18px 24px;
+    }
+    .draggable-photo {
+      width: 225px;
+      height: 260px;
+      border-radius: 24px;
+      box-shadow: 0 2px 24px #e7bcde66,0 6px 30px #b488e8cc,0 0 18px #fff6;
+      background: rgba(255,255,255,0.97);
+      overflow: hidden;
+      cursor: grab;
+      margin: 0 7px 0 7px;
+      position: relative;
+      transition: transform 0.13s, box-shadow 0.2s;
+      z-index: 20;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      border: 2px solid #e7bcdebb;
+      touch-action: none;
+    }
+    .draggable-photo.dragging {
+      opacity: 0.8;
+      box-shadow: 0 0 0 18px #e8b3ff66,0 2px 24px #e7bcde99;
+      transform: scale(1.08) rotate(-2deg);
+      z-index: 99;
+      cursor: grabbing;
+    }
+    .draggable-photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      user-drag: none;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+      object-fit: cover;
+    }
+    .dreamy-message {
+      position: fixed;
+      left: 50%;
+      top: 58%;
+      transform: translate(-50%,0);
+      font-size: 2em;
+      color: #fff;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      text-align: center;
+      padding: 28px 40px;
+      border-radius: 32px;
+      background: linear-gradient(90deg, #e8b3ffcc 0%, #bfeaffbb 100%);
+      box-shadow: 0 8px 40px #b488e8cc, 0 1.5px 8px #e8b3ff88;
+      text-shadow: 0 0 9px #fff, 0 0 22px #e8b3ff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 150;
+      animation: dreamy-fadein 1.9s cubic-bezier(.64,.11,.39,.97) forwards;
+      display: none;
+    }
+    @keyframes dreamy-fadein {
+      0% { opacity: 0; filter: blur(16px);}
+      65% { opacity: 0.7;}
+      100% { opacity: 1; filter: blur(0);}
+    }
+    /* Responsive tweaks */
+    @media (max-width: 1200px) {
+      .core-container, .polaroid-area, .draggable-photos { max-width: 99vw; }
+    }
+    @media (max-width: 1000px) {
+      .core-title { font-size: 1.3em;}
+      .polaroid-area { gap: 8px; }
+      .polaroid-frame { width: 120px; height: 140px;}
+      .polaroid-label { font-size: 0.96em; padding: 7px 0 7px 0;}
+      .draggable-photo { width: 150px; height: 170px; }
+      .dreamy-message { font-size: 1.3em; padding: 14px 8vw;}
+    }
+    @media (max-width: 700px) {
+      .core-container, .polaroid-area, .draggable-photos { max-width: 99vw; }
+      .core-title { font-size: 1.08em;}
+      .polaroid-frame { width: 90px; height: 95px;}
+      .polaroid-label { font-size: 0.83em; padding: 4px 0 3px 0;}
+      .draggable-photo { width: 98px; height: 110px; }
+      .dreamy-message { font-size: 1em; padding: 7px 3vw;}
+    }
+    @media (max-width: 430px) {
+      .core-title { font-size: 0.98em;}
+      .polaroid-area, .draggable-photos { gap: 4px; }
+      .polaroid-frame, .draggable-photo { width: 65px; height: 70px;}
+      .polaroid-label { font-size: 0.68em; }
+      .dreamy-message { font-size: 0.7em;}
+    }
+    @media (max-width: 350px) {
+      .core-title { font-size: 0.85em;}
+      .draggable-photo { width: 48px; height: 50px;}
+      .polaroid-frame { width: 38px; height: 43px;}
+    }
+    /* Hide music button on very small screens */
+    @media (max-width: 390px) {
+      .music-ctrl { display: none;}
+    }
+    .music-ctrl {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 400;
+      background: rgba(255,255,255,0.8);
+      padding: 7px 18px;
+      border-radius: 22px;
+      box-shadow: 0 2px 16px #b488e888;
+      font-size: 1em;
+      color: #6a1b9a;
+      outline: none;
+      border: none;
+      font-family: 'Baloo 2', cursive, sans-serif;
       cursor: pointer;
-      transition: background 0.22s, box-shadow 0.22s;
+      margin: 0 auto;
+      transition: background 0.2s, color 0.2s;
     }
-
-    @media (max-width: 900px) {
-      .main-memories-zone { flex-direction: column; align-items: center; }
-      .mem-cards { margin-right: 0; }
-      .drop-zone { margin-left: 0; margin-top: 34px; }
-      .avatars-right { right: 0; left: 0; justify-content: center;}
-    }
-    @media (max-width: 600px) {
-      .main-memories-zone { min-height: 440px; }
-      .mem-cards { grid-gap: 10vw; }
-      .mem-card { width: 88vw; min-width: 100px; }
-      .drop-zone { width: 128px; height: 128px;}
-      .drop-zone svg { width: 99px; height: 99px;}
-      .avatars-right { height: 170px; }
-      .avatar-girl, .avatar-boy { height: 165px; width: 70px; }
-    }
+    .music-ctrl.on { background: #e1bee7; color: #fff;}
+    .music-ctrl:active { background: #b2ebf2; color: #6a1b9a;}
   </style>
 </head>
 <body>
-  <!-- Popper -->
-  <div class="popper" id="popper"></div>
-  <!-- Security Nickname Modal -->
-  <div class="security-modal" id="securityModal">
-    <div class="security-content">
-      <div class="security-heart" id="securityHeart">💗</div>
-      <h1>Only my love can enter</h1>
-      <label for="nicknameInp" style="display:block;margin-bottom:8px;">
-        <span style="font-size:1.23em;color:#fa67a3;">
-          What do you call me? 
-        </span>
-        <span style="margin-left:6px;font-size:1.2em;">💕</span>
-      </label>
-      <input type="text" id="nicknameInp" placeholder="Type nickname..." autocomplete="off" />
-      <br>
-      <button onclick="checkNickname()">Enter</button>
-      <div id="securityFail" style="color:#fa67a3;margin-top:10px;height:22px;"></div>
-      <!-- SoundCloud Music -->
-      <iframe width="0" height="0" style="display:none;" allow="autoplay" id="pageMusic"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1272813342&color=%239500ff&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-      </iframe>
+  <!-- Page 2 Example (Love Story) Responsive Block (for demo) -->
+  <div id="page2-bg" style="display:none;">
+    <div class="love-story-responsive">
+      <div class="illustration">
+        <img src="https://em-content.zobj.net/thumbs/120/apple/354/teddy-bear_1f9f8.png" alt="teddy">
+        <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
+      </div>
+      <h2>Mohit and Thara 💕</h2>
+      If this page has found you, then my 3 to 4 months of daily coding were truly successful. Because this was made just for you, Sachutty!! Do you remember how we were in the same division in fourth and fifth standard, sat together in the same traveller KRK? And how those senior chechis used to tease us by pretending to marry us by plucking leaves through the traveller window and throwing them on our heads like it was some dramatic ceremony!! We both shouted chii and ran away, laughing and hiding in embarrassment. But little did we know, destiny was smiling quietly that day!!<br><br>
+      And now here we are in 2025. It has almost been a year since you confessed your love to me!! Since then, everything has changed. You became my constant, my peace, my strongest support!! You stayed with me through every low, held me even when you were tired, and gave me the kind of love that speaks louder in silence than in words!!<br><br>
+      You stood by me when no one else did. You tried every day to bring even the smallest smile to my face!! I have seen your efforts, I have felt your love, and I hold it close always. And how can I ever forget 7th of July, the evening you proposed with that shy yet brave heart!! And 13th of July, the moment I accepted your request and gave this love a name!!<br><br>
+      That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!!<br><br>
+      Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!!<br><br>
+      This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!!<br><br>
+      In every universe, in every lifetime, it’s still you.
     </div>
   </div>
-  <!-- Floating hearts, petals, particles -->
-  <div id="floaters"></div>
-  <!-- Floating Quotes -->
-  <div class="floating-quote" style="animation-delay:2s;top:22vh;">7th July 🌸</div>
-  <div class="floating-quote" style="animation-delay:8s;top:34vh;">13th Aug 💜</div>
-  <div class="floating-quote" style="animation-delay:12s;top:62vh;">“Always us, in every universe.”</div>
-  <!-- Anime Avatars, right side -->
-  <div class="avatars-right">
-    <div class="avatar-girl">
-      <img id="girlAvatar" src="images/image1.png" alt="Thara, girl avatar"
-        style="filter:brightness(1.03) contrast(1.03);"/>
+  <!-- Page 3: Core Memories Polaroid Game -->
+  <div class="core-container">
+    <div class="core-title">CORE MEMORIES</div>
+    <div class="drag-instructions">Drag each photo to the correct moment 💜</div>
+    <div class="polaroid-area" id="polaroidArea">
+      <!-- Order: blank, 12 Sep, 7 July, 16 Aug, 12 Sep -->
+      <div class="polaroid-frame" data-label="blank">
+        <div class="polaroid-drop" data-polaroid="0"></div>
+        <div class="polaroid-label">&nbsp;</div>
+      </div>
+      <div class="polaroid-frame" data-label="12 Sep">
+        <div class="polaroid-drop" data-polaroid="1"></div>
+        <div class="polaroid-label">12 Sep</div>
+      </div>
+      <div class="polaroid-frame" data-label="7 July">
+        <div class="polaroid-drop" data-polaroid="2"></div>
+        <div class="polaroid-label">7 July</div>
+      </div>
+      <div class="polaroid-frame" data-label="16 Aug">
+        <div class="polaroid-drop" data-polaroid="3"></div>
+        <div class="polaroid-label">16 Aug</div>
+      </div>
+      <div class="polaroid-frame" data-label="12 Sep">
+        <div class="polaroid-drop" data-polaroid="4"></div>
+        <div class="polaroid-label">12 Sep</div>
+      </div>
     </div>
-    <div class="avatar-boy">
-      <img id="boyAvatar" src="https://i.ibb.co/1JQ8TtN/boy-avatar.png" alt="Mohit, boy avatar"
-        style="filter:brightness(1.09) contrast(1.01);"/>
+    <div class="draggable-photos" id="draggablePhotos">
+      <div class="draggable-photo" draggable="true" data-photo="0"><img src="./assets/mohit_1.png" alt="Memory 1"></div>
+      <div class="draggable-photo" draggable="true" data-photo="1"><img src="./assets/mohit_2.png" alt="Memory 2"></div>
+      <div class="draggable-photo" draggable="true" data-photo="2"><img src="./assets/mohit_3.png" alt="Memory 3"></div>
+      <div class="draggable-photo" draggable="true" data-photo="3"><img src="./assets/mohit_4.png" alt="Memory 4"></div>
+      <div class="draggable-photo" draggable="true" data-photo="4"><img src="./assets/mohit_5.png" alt="Memory 5"></div>
     </div>
+    <div class="dreamy-message" id="dreamyMsg">we don't know where we will end up, but I promise I will always be there for you 💜</div>
+    <button class="music-ctrl" id="musicToggle">Play Music</button>
+    <audio id="bgMusic" loop preload="auto">
+      <source src="./assets/sweet-love.mp3" type="audio/mp3">
+    </audio>
   </div>
-  <!-- Main Memories Section -->
-  <div class="main-memories-zone" id="memoriesPage" style="display:none;">
-    <div class="mem-cards" id="memCards">
-      <!-- Six sample images/icons, label/core set in JS -->
-      <div class="mem-card core" data-id="1" style="left:70px;top:80px;">
-        <img src="./assets/memory1.jpg" alt="Core Memory 1"/>
-        <div class="mem-label">KRK Bus</div>
-        <div class="whisper">“First met, shy smiles…”</div>
-      </div>
-      <div class="mem-card" data-id="2" style="left:320px;top:60px;">
-        <img src="./assets/memory2.jpg" alt="Memory 2"/>
-        <div class="mem-label">Momo Shop</div>
-        <div class="whisper">“Momos after class!”</div>
-      </div>
-      <div class="mem-card core" data-id="3" style="left:600px;top:90px;">
-        <img src="./assets/memory3.jpg" alt="Core Memory 2"/>
-        <div class="mem-label">Confession</div>
-        <div class="whisper">“7th July, your brave heart.”</div>
-      </div>
-      <div class="mem-card" data-id="4" style="left:170px;top:310px;">
-        <img src="./assets/memory4.jpg" alt="Memory 4"/>
-        <div class="mem-label">Rainy Walk</div>
-        <div class="whisper">“Shared an umbrella…”</div>
-      </div>
-      <div class="mem-card core" data-id="5" style="left:500px;top:320px;">
-        <img src="./assets/memory5.jpg" alt="Core Memory 3"/>
-        <div class="mem-label">13th Aug</div>
-        <div class="whisper">“You said yes 💖”</div>
-      </div>
-      <div class="mem-card" data-id="6" style="left:350px;top:250px;">
-        <img src="./assets/memory6.jpg" alt="Memory 6"/>
-        <div class="mem-label">Tulips</div>
-        <div class="whisper">“Petals everywhere…”</div>
-      </div>
-    </div>
-    <div class="drop-zone" id="dropZone">
-      <svg viewBox="0 0 100 100">
-        <path d="M50 82 Q20 60 20 40 Q20 20 50 32 Q80 20 80 40 Q80 60 50 82Z"
-          fill="#fa67a3" stroke="#fff" stroke-width="3"/>
-      </svg>
-      <div class="drop-count" id="dropCount">0/3</div>
-    </div>
-  </div>
-  <div class="final-message" id="finalMessage">
-    <span class="big-heart">💖</span>
-    <div style="font-family:'Great Vibes',cursive;font-size:2em;margin-bottom:12px;color:#fa67a3;">
-      You remembered us perfectly.<br>That’s why we’re forever 💖
-    </div>
-    <button onclick="window.location.reload()">Take Me Back 💫</button>
-  </div>
-  <button id="unmuteBtn" style="display:none;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:99999;padding:12px 34px;background:#fa67a3;color:#fff;border:none;border-radius:16px;box-shadow:0 5px 20px #fa67a366;font-size:1.15em;font-family:'Baloo 2';">🔈 Unmute Music</button>
   <script>
-    // --- Popper Animation ---
-    function showPopper() {
-      const popper = document.getElementById('popper');
-      popper.innerHTML = "";
-      const pops = ["🎉","🎊","💖","✨","💜"];
-      for(let i=0;i<9;i++) {
-        let s = document.createElement("span");
-        s.textContent = pops[Math.floor(Math.random()*pops.length)];
-        s.style.animationDelay = (Math.random()*0.25)+'s';
-        popper.appendChild(s);
-      }
-      popper.style.display = "block";
-      setTimeout(()=>{ popper.style.display="none"; }, 1200);
-    }
-    // --- Security Modal ---
-    function checkNickname() {
-      const val = document.getElementById('nicknameInp').value.trim().toLowerCase();
-      const fail = document.getElementById('securityFail');
-      const heart = document.getElementById('securityHeart');
-      if(val === "achu") {
-        document.getElementById('securityModal').style.display = 'none';
-        document.getElementById('memoriesPage').style.display = 'flex';
-        playBgMusic();
-        showPopper();
-      } else {
-        fail.textContent = "Wrong! Try again, my love.";
-        heart.classList.add('shake');
-        heart.textContent = "💔";
-        setTimeout(()=>{ heart.classList.remove('shake'); heart.textContent="💗"; }, 700);
-        setTimeout(()=>{ fail.textContent=""; }, 1800);
-      }
-    }
-    document.getElementById('nicknameInp').addEventListener('keydown', function(e){
-      if(e.key==='Enter'){ checkNickname(); }
+    // Correct matches: [mohit_1, mohit_2, mohit_3, mohit_4, mohit_5] to [blank, 12 Sep, 7 July, 16 Aug, 12 Sep]
+    // photo-to-polaroid index: [0,1,2,3,4] to [0,1,2,3,4]
+    // mohit_1.png → Blank polaroid (0)
+    // mohit_2.png → 12 Sep (1)
+    // mohit_3.png → 7 July (2)
+    // mohit_4.png → 16 Aug (3)
+    // mohit_5.png → 12 Sep (4)
+    const correctMatch = [0,1,2,3,4];
+
+    // Place tracking: placed[polaroidIndex] = photoIndex, or null
+    let placed = Array(5).fill(null);
+
+    let draggingPhoto = null;
+
+    // --- Desktop Drag & Drop
+    document.querySelectorAll('.draggable-photo').forEach(photo => {
+      photo.addEventListener('dragstart', function(e) {
+        draggingPhoto = photo;
+        setTimeout(() => photo.classList.add('dragging'), 0);
+        let img = document.createElement('img');
+        img.src = photo.querySelector('img').src;
+        img.style.width = "90px";
+        e.dataTransfer.setDragImage(img, 45, 45);
+      });
+      photo.addEventListener('dragend', function(e) {
+        photo.classList.remove('dragging');
+        draggingPhoto = null;
+        document.querySelectorAll('.polaroid-frame').forEach(f=>f.classList.remove('highlight'));
+      });
     });
-    // --- Floating hearts, petals, particles ---
-    function randomBetween(a, b) { return a + Math.random() * (b-a);}
-    function spawnFloaters() {
-      const floaters = document.getElementById('floaters');
-      for(let i=0;i<8;i++){
-        let el = document.createElement('div');
-        el.className = 'floating-heart';
-        el.style.left = randomBetween(2,98)+'vw';
-        el.style.bottom = randomBetween(-7,12)+'vh';
-        el.style.fontSize = (randomBetween(1.6,2.75))+'em';
-        el.style.animationDuration = randomBetween(6,14)+'s';
-        el.textContent = "💕";
-        floaters.appendChild(el);
-      }
-      for(let i=0;i<6;i++){
-        let el = document.createElement('div');
-        el.className = 'floating-petal';
-        el.style.left = randomBetween(1,99)+'vw';
-        el.style.bottom = randomBetween(-4,10)+'vh';
-        el.style.transform = "rotate("+(randomBetween(-44,44))+"deg)";
-        el.style.animationDuration = randomBetween(6,12)+'s';
-        floaters.appendChild(el);
-      }
-      for(let i=0;i<11;i++){
-        let el = document.createElement('div');
-        el.className = 'floating-particle';
-        el.style.left = randomBetween(1,99)+'vw';
-        el.style.bottom = randomBetween(2,24)+'vh';
-        el.style.animationDuration = randomBetween(5,13)+'s';
-        floaters.appendChild(el);
-      }
-    }
-    spawnFloaters();
-    // --- Memories Drag & Drop ANYWHERE (window) ---
-    const coreSet = ['1','3','5'];
-    let placedCores = [];
-    let draggedCard = null, offsetX=0, offsetY=0, origX=0, origY=0, origZ=10;
-    function makeDraggable(card) {
-      card.addEventListener('mousedown', dragStart);
-      card.addEventListener('touchstart', dragStart, {passive:false});
-    }
-    function dragStart(e) {
-      if (e.type === 'touchstart') {
-        draggedCard = e.target.closest('.mem-card');
-        let touch = e.touches[0];
-        let rect = draggedCard.getBoundingClientRect();
-        offsetX = touch.clientX - rect.left;
-        offsetY = touch.clientY - rect.top;
-      } else {
-        draggedCard = e.target.closest('.mem-card');
-        offsetX = e.clientX - draggedCard.getBoundingClientRect().left;
-        offsetY = e.clientY - draggedCard.getBoundingClientRect().top;
-      }
-      origX = parseInt(draggedCard.style.left);
-      origY = parseInt(draggedCard.style.top);
-      origZ = draggedCard.style.zIndex;
-      draggedCard.classList.add('dragging');
-      window.addEventListener('mousemove', dragMove);
-      window.addEventListener('mouseup', dragEnd);
-      window.addEventListener('touchmove', dragMove, {passive:false});
-      window.addEventListener('touchend', dragEnd);
-    }
-    function dragMove(e) {
-      if (!draggedCard) return;
-      e.preventDefault && e.preventDefault();
-      let pageX, pageY;
-      if (e.type.startsWith('touch')) {
-        let touch = e.touches[0];
-        pageX = touch.clientX;
-        pageY = touch.clientY;
-      } else {
-        pageX = e.clientX;
-        pageY = e.clientY;
-      }
-      // Drag anywhere on window!
-      let x = pageX - offsetX;
-      let y = pageY - offsetY;
-      // Clamp so card stays on screen
-      x = Math.max(0, Math.min(x, window.innerWidth - draggedCard.offsetWidth));
-      y = Math.max(0, Math.min(y, window.innerHeight - draggedCard.offsetHeight));
-      draggedCard.style.left = x + 'px';
-      draggedCard.style.top = y + 'px';
-      draggedCard.style.zIndex = 999;
-    }
-    function dragEnd(e) {
-      if (!draggedCard) return;
-      // Check if inside drop zone
-      const dropZone = document.getElementById('dropZone');
-      const dzRect = dropZone.getBoundingClientRect();
-      const cardRect = draggedCard.getBoundingClientRect();
-      const centerX = cardRect.left + cardRect.width/2;
-      const centerY = cardRect.top + cardRect.height/2;
-      if(centerX > dzRect.left && centerX < dzRect.right && centerY > dzRect.top && centerY < dzRect.bottom){
-        // Dropped in drop zone!
-        if(coreSet.includes(draggedCard.dataset.id)) {
-          if (!placedCores.includes(draggedCard.dataset.id)) {
-            placedCores.push(draggedCard.dataset.id);
-            draggedCard.style.left = (dzRect.left + Math.random()*30-10) + 'px';
-            draggedCard.style.top = (dzRect.top + Math.random()*30-10) + 'px';
-            draggedCard.style.zIndex = 111 + placedCores.length;
-            draggedCard.style.pointerEvents = 'none';
-            draggedCard.classList.add('core');
-            document.getElementById('dropCount').textContent = placedCores.length+'/3';
-            showPopper();
-            if (placedCores.length === 3) {
-              setTimeout(showFinalMessage, 1000);
+
+    document.querySelectorAll('.polaroid-drop').forEach((drop, idx) => {
+      drop.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        if(!drop.hasChildNodes() && draggingPhoto) {
+          drop.parentNode.classList.add('highlight');
+        }
+      });
+      drop.addEventListener('dragleave', function(e) {
+        drop.parentNode.classList.remove('highlight');
+      });
+      drop.addEventListener('drop', function(e) {
+        e.preventDefault();
+        if(!drop.hasChildNodes() && draggingPhoto) {
+          drop.appendChild(draggingPhoto);
+          drop.parentNode.classList.remove('highlight');
+          placed[idx] = parseInt(draggingPhoto.getAttribute('data-photo'));
+          // Remove from other polaroid if any
+          document.querySelectorAll('.polaroid-drop').forEach((d2, i2)=>{
+            if(i2 !== idx && d2.contains(draggingPhoto)) {
+              placed[i2] = null;
+              d2.innerHTML = "";
             }
+          });
+          // Remove from bar if still in bar
+          const bar = document.getElementById('draggablePhotos');
+          if(bar.contains(draggingPhoto)) {
+            bar.removeChild(draggingPhoto);
+          }
+          if(placed.every((v,i)=>v!==null && v===correctMatch[i])) {
+            showDreamyMsg();
+          }
+        }
+      });
+    });
+
+    // Allow dragging back to photo bar
+    const bar = document.getElementById('draggablePhotos');
+    bar.addEventListener('dragover', function(e) { e.preventDefault(); });
+    bar.addEventListener('drop', function(e) {
+      e.preventDefault();
+      if(draggingPhoto) {
+        bar.appendChild(draggingPhoto);
+        document.querySelectorAll('.polaroid-drop').forEach((drop, idx)=>{
+          if(drop.contains(draggingPhoto)) {
+            drop.innerHTML = "";
+            placed[idx] = null;
+          }
+        });
+      }
+    });
+
+    function showDreamyMsg() {
+      const msg = document.getElementById('dreamyMsg');
+      msg.style.display = "block";
+      setTimeout(()=>{ msg.style.opacity = 1; }, 80);
+    }
+
+    // --- Touch Drag & Drop for Mobile
+    let touchPhoto = null, touchOrigParent = null;
+    let touchOffset = {x:0, y:0};
+
+    function getTouchTargetPhoto(e) {
+      let el = e.target;
+      while (el && !el.classList.contains('draggable-photo')) el = el.parentElement;
+      return el;
+    }
+    function getPolaroidDropUnder(x, y) {
+      return Array.from(document.querySelectorAll('.polaroid-drop')).find(drop => {
+        const rect = drop.getBoundingClientRect();
+        return (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom);
+      });
+    }
+    document.querySelectorAll('.draggable-photo').forEach(photo => {
+      // Touch start
+      photo.addEventListener('touchstart', function(e) {
+        touchPhoto = photo;
+        touchOrigParent = photo.parentNode;
+        const touch = e.touches[0];
+        const rect = photo.getBoundingClientRect();
+        touchOffset.x = touch.clientX - rect.left;
+        touchOffset.y = touch.clientY - rect.top;
+        photo.classList.add('dragging');
+        photo.style.position = 'fixed';
+        photo.style.left = rect.left + 'px';
+        photo.style.top = rect.top + 'px';
+        photo.style.zIndex = 999;
+        document.body.appendChild(photo);
+        e.preventDefault();
+      });
+      // Touch move
+      photo.addEventListener('touchmove', function(e) {
+        if (!touchPhoto) return;
+        const touch = e.touches[0];
+        touchPhoto.style.left = (touch.clientX - touchOffset.x) + 'px';
+        touchPhoto.style.top = (touch.clientY - touchOffset.y) + 'px';
+        // Highlight
+        document.querySelectorAll('.polaroid-frame').forEach(f => f.classList.remove('highlight'));
+        let drop = getPolaroidDropUnder(touch.clientX, touch.clientY);
+        if(drop && !drop.hasChildNodes()) drop.parentNode.classList.add('highlight');
+      });
+      // Touch end
+      photo.addEventListener('touchend', function(e) {
+        if (!touchPhoto) return;
+        const lastTouch = e.changedTouches[0];
+        let drop = getPolaroidDropUnder(lastTouch.clientX, lastTouch.clientY);
+        document.querySelectorAll('.polaroid-frame').forEach(f => f.classList.remove('highlight'));
+        if (drop && !drop.hasChildNodes()) {
+          drop.appendChild(touchPhoto);
+          placed[parseInt(drop.dataset.polaroid)] = parseInt(touchPhoto.getAttribute('data-photo'));
+          // Remove from previous polaroid if any
+          document.querySelectorAll('.polaroid-drop').forEach((d2, i2)=>{
+            if(d2!==drop && d2.contains(touchPhoto)) {
+              placed[i2] = null;
+              d2.innerHTML = "";
+            }
+          });
+          touchPhoto.style.position = '';
+          touchPhoto.style.left = '';
+          touchPhoto.style.top = '';
+          touchPhoto.style.zIndex = 20;
+          if(placed.every((v,i)=>v!==null && v===correctMatch[i])) {
+            showDreamyMsg();
           }
         } else {
-          // Incorrect card softly fade away
-          draggedCard.classList.add('fading');
-          setTimeout(()=>{ draggedCard.style.display='none'; }, 900);
+          // Return to bar
+          bar.appendChild(touchPhoto);
+          touchPhoto.style.position = '';
+          touchPhoto.style.left = '';
+          touchPhoto.style.top = '';
+          touchPhoto.style.zIndex = 20;
+          document.querySelectorAll('.polaroid-drop').forEach((drop, idx)=>{
+            if(drop.contains(touchPhoto)) {
+              drop.innerHTML = "";
+              placed[idx] = null;
+            }
+          });
         }
+        touchPhoto.classList.remove('dragging');
+        touchPhoto = null;
+      });
+    });
+
+    // --- Music Controls ---
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggle');
+    let playing = false;
+    musicBtn.addEventListener('click', function() {
+      if (!playing) {
+        music.play();
+        playing = true;
+        musicBtn.textContent = "Pause Music";
+        musicBtn.classList.add("on");
       } else {
-        // Snap back to original
-        draggedCard.style.left = origX+'px';
-        draggedCard.style.top = origY+'px';
-        draggedCard.style.zIndex = origZ;
+        music.pause();
+        playing = false;
+        musicBtn.textContent = "Play Music";
+        musicBtn.classList.remove("on");
       }
-      draggedCard.classList.remove('dragging');
-      draggedCard = null;
-      window.removeEventListener('mousemove', dragMove);
-      window.removeEventListener('mouseup', dragEnd);
-      window.removeEventListener('touchmove', dragMove);
-      window.removeEventListener('touchend', dragEnd);
-    }
-    document.querySelectorAll('.mem-card').forEach(makeDraggable);
-    function showFinalMessage() {
-      document.getElementById('finalMessage').style.display = 'block';
-    }
-    // --- Avatars: blink/smile ---
-    setInterval(() => {
-      const girl = document.getElementById('girlAvatar');
-      girl.style.filter = 'brightness(1.01) contrast(1.05)';
-      setTimeout(()=>{ girl.style.filter = 'brightness(1.08) contrast(1.06)'; }, 650);
-    }, 3400);
-    setInterval(() => {
-      const boy = document.getElementById('boyAvatar');
-      boy.style.filter = 'brightness(1.07) contrast(1.01)';
-      setTimeout(()=>{ boy.style.filter = 'brightness(1.09) contrast(1.05)'; }, 1100);
-    }, 5100);
-    // --- BG Music Fallback Unmute ---
-    function playBgMusic(){
-      const i = document.getElementById('pageMusic');
-      i.style.display = 'block';
-      setTimeout(()=>{
-        if(i.contentWindow){
-          document.getElementById('unmuteBtn').style.display = 'block';
-        }
-      }, 3500);
-    }
-    document.getElementById('unmuteBtn').onclick = function(){
-      document.getElementById('pageMusic').style.display = 'block';
-      this.style.display = 'none';
-    };
-    // --- Rain (dreamy) ---
-    function spawnDreamyRain(){
-      for(let i=0;i<18;i++){
-        let drop = document.createElement('div');
-        drop.className = 'raindrop';
-        drop.style.left = randomBetween(1,99)+'vw';
-        drop.style.width = (6 + Math.random()*3) + 'px';
-        drop.style.height = (13 + Math.random()*6) + 'px';
-        drop.style.opacity = (0.12 + Math.random() * 0.18).toFixed(2);
-        drop.style.animationDuration = (7.2 + Math.random()*2.2).toFixed(2) + "s";
-        document.body.appendChild(drop);
-        setTimeout(()=>{ drop.remove(); }, 12000);
-      }
-    }
-    setInterval(spawnDreamyRain, 1800);
+    });
+    music.addEventListener('pause', function() {
+      playing = false;
+      musicBtn.textContent = "Play Music";
+      musicBtn.classList.remove("on");
+    });
+    music.addEventListener('play', function() {
+      playing = true;
+      musicBtn.textContent = "Pause Music";
+      musicBtn.classList.add("on");
+    });
   </script>
 </body>
 </html>
