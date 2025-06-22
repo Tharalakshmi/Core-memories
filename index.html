@@ -127,41 +127,38 @@
     }
     .success { color: #43a047; margin-top: 10px; font-weight: bold; }
     .error { color: #e53935; margin-top: 10px; font-weight: bold; }
-    /* Page 2: Love Story wider text, LAPTOP responsive only */
+
+    /* Page 2: Love Story readable, block format */
     .love-story {
       background: rgba(255,255,255,0.18);
       border-radius: 18px;
-      padding: 44px 13vw 44px 13vw;
+      padding: 40px 60px;
       font-size: 1.17em;
       color: #26132e;
       line-height: 1.7;
       margin-bottom: 28px;
       box-shadow: 0 2px 16px #e7bcde55;
       animation: fadeInUp 1.2s both;
-      max-width: none;
-      min-width: 1200px;
-      white-space: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
       letter-spacing: 0.3px;
       font-weight: 500;
       display: block;
+      white-space: normal;
+      overflow-wrap: break-word;
+      text-align: left;
     }
-    .love-story > * {
-      display: inline;
-      white-space: pre;
+    .love-story h2 {
+      margin-top: 0.2em;
+      margin-bottom: 0.5em;
+      text-align: center;
     }
-    /* Hide scroll on smaller screens (disable mobile responsiveness for this page) */
-    @media (max-width: 1100px) {
-      .love-story { min-width: 900px; padding: 40px 2vw; }
+    .love-story .illustration {
+      text-align: center;
+      margin-bottom: 12px;
     }
-    @media (max-width: 900px) {
-      .love-story { min-width: 720px; padding: 30px 1vw; }
-    }
-    @media (max-width: 700px) {
-      .love-story { min-width: 640px; }
-    }
-    .illustration img {
+    .love-story .illustration img {
       width: 52px;
       margin: 0 10px 8px 10px;
       vertical-align: middle;
@@ -278,7 +275,6 @@
       transition: box-shadow 0.2s, transform 0.12s;
       overflow: hidden;
       pointer-events: auto;
-      /* Glowing floating effect */
       animation: polaroidFloat 6s infinite ease-in-out;
     }
     @keyframes polaroidFloat {
@@ -319,7 +315,6 @@
       background: rgba(255,255,255,0.48);
       transform: scale(1.04);
     }
-    /* Place polaroids at visible random spots (non-overlapping) */
     .polaroid-1 { left: 8vw;  top: 32px; }
     .polaroid-2 { left: 26vw; top: 42px; }
     .polaroid-3 { left: 47vw; top: 11px; }
@@ -397,17 +392,16 @@
       70% { opacity: 0.7;}
       100% { opacity: 1; filter: blur(0);}
     }
-
-    /* --- disable mobile responsiveness for page 3 --- */
     @media (max-width: 1000px) {
       .polaroid-frame, .draggable-photo { width: 110px; height: 120px; }
       .polaroid-area { height: 180px; }
       .draggable-photos { min-width: 500px; }
+      .love-story { padding: 32px 10vw; max-width: 95vw; }
     }
     @media (max-width: 600px) {
-      /* Do not shrink or move polaroids/photos further */
       .polaroid-area, .draggable-photos { min-width: 400px; }
       .core-memories-container { min-width: 400px;}
+      .love-story { padding: 18px 1vw; max-width: 99vw; }
     }
   </style>
 </head>
@@ -425,7 +419,7 @@
       <div id="songResult"></div>
     </div>
   </div>
-  <!-- Page 2: Love Story + Nickname Captcha (modified) -->
+  <!-- Page 2: Love Story + Nickname Captcha (now block readable) -->
   <div id="page2" style="display:none; min-height:100vh;">
     <div class="frosted">
       <div class="love-story">
@@ -434,7 +428,13 @@
           <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
         </div>
         <h2 style="font-family:'Baloo 2',cursive;font-size:2em;color:#754b9a;">Mohit and Thara 💕</h2>
-        If this page has found you, then my 3 to 4 months of daily coding were truly successful. Because this was made just for you, Sachutty!! Do you remember how we were in the same division in fourth and fifth standard, sat together in the same traveller KRK? And how those senior chechis used to tease us by pretending to marry us by plucking leaves through the traveller window and throwing them on our heads like it was some dramatic ceremony!! We both shouted chii and ran away, laughing and hiding in embarrassment. But little did we know, destiny was smiling quietly that day!! And now here we are in 2025. It has almost been a year since you confessed your love to me!! Since then, everything has changed. You became my constant, my peace, my strongest support!! You stayed with me through every low, held me even when you were tired, and gave me the kind of love that speaks louder in silence than in words!! You stood by me when no one else did. You tried every day to bring even the smallest smile to my face!! I have seen your efforts, I have felt your love, and I hold it close always. And how can I ever forget 7th of July, the evening you proposed with that shy yet brave heart!! And 13th of July, the moment I accepted your request and gave this love a name!! That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!! Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!! This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!! In every universe, in every lifetime, it’s still you.
+        If this page has found you, then my 3 to 4 months of daily coding were truly successful. Because this was made just for you, Sachutty!! Do you remember how we were in the same division in fourth and fifth standard, sat together in the same traveller KRK? And how those senior chechis used to tease us by pretending to marry us by plucking leaves through the traveller window and throwing them on our heads like it was some dramatic ceremony!! We both shouted chii and ran away, laughing and hiding in embarrassment. But little did we know, destiny was smiling quietly that day!!<br><br>
+        And now here we are in 2025. It has almost been a year since you confessed your love to me!! Since then, everything has changed. You became my constant, my peace, my strongest support!! You stayed with me through every low, held me even when you were tired, and gave me the kind of love that speaks louder in silence than in words!!<br><br>
+        You stood by me when no one else did. You tried every day to bring even the smallest smile to my face!! I have seen your efforts, I have felt your love, and I hold it close always. And how can I ever forget 7th of July, the evening you proposed with that shy yet brave heart!! And 13th of July, the moment I accepted your request and gave this love a name!!<br><br>
+        That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!!<br><br>
+        Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!!<br><br>
+        This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!!<br><br>
+        In every universe, in every lifetime, it’s still you.
       </div>
       <div class="nickname-captcha">
         <span>✨ Attractive Captcha: <span style="color:#754b9a;">What does Mohit call Thara?</span> ✨</span>
@@ -446,7 +446,7 @@
       </div>
     </div>
   </div>
-  <!-- Page 3: Polaroid Draggable Game (new) -->
+  <!-- Page 3: Polaroid Draggable Game (draggable images fixed) -->
   <div id="page3" style="display:none; min-height:100vh;">
     <div class="core-memories-container">
       <div class="core-title">CORE MEMORIES</div>
@@ -544,7 +544,7 @@
       const correctMatch = [0, 1, 2, 3, 4];
       let placed = Array(5).fill(null); // placed[i] = photo index or null
 
-      let draggingPhoto = null, offsetX = 0, offsetY = 0, origRect = null, origParent = null, origNext = null;
+      let draggingPhoto = null, dragIndex = null, dragOverPolaroid = null;
 
       function resetPolaroidGame() {
         // Reset all polaroids
@@ -554,107 +554,91 @@
         const bar = document.querySelector('.draggable-photos');
         document.querySelectorAll('.draggable-photo').forEach((ph,i) => {
           ph.classList.remove('dragging');
-          bar.appendChild(ph);
           ph.style.position = '';
           ph.style.left = '';
           ph.style.top = '';
           ph.style.zIndex = 20;
+          bar.appendChild(ph);
         });
         // Hide message
         document.getElementById('dreamyMsg').style.display = "none";
       }
       window.resetPolaroidGame = resetPolaroidGame;
 
-      // Drag logic for desktop only
+      // Drag and Drop events for photos
       document.querySelectorAll('.draggable-photo').forEach(photo => {
-        // Only photo image is draggable
-        photo.addEventListener('mousedown', function(e) {
-          if(e.target.tagName.toLowerCase() !== 'img') return;
-          e.preventDefault();
+        photo.addEventListener('dragstart', function(e) {
           draggingPhoto = photo;
-          photo.classList.add('dragging');
-          origRect = photo.getBoundingClientRect();
-          origParent = photo.parentNode;
-          origNext = photo.nextSibling;
-          // Move to body
-          photo.style.position = 'fixed';
-          photo.style.left = origRect.left + 'px';
-          photo.style.top = origRect.top + 'px';
-          photo.style.zIndex = 999;
-          offsetX = e.clientX - origRect.left;
-          offsetY = e.clientY - origRect.top;
+          dragIndex = parseInt(photo.getAttribute('data-photo'));
+          setTimeout(() => photo.classList.add('dragging'), 0);
+          // For Firefox compatibility, set a dummy drag image
+          let img = document.createElement('img');
+          img.src = photo.querySelector('img').src;
+          img.style.width = "70px";
+          e.dataTransfer.setDragImage(img, 35, 35);
+        });
+        photo.addEventListener('dragend', function(e) {
+          photo.classList.remove('dragging');
+          draggingPhoto = null;
+          dragIndex = null;
+          document.querySelectorAll('.polaroid-frame').forEach(f=>f.classList.remove('highlight'));
+        });
+      });
 
-          document.body.appendChild(photo);
-
-          function moveAt(x, y) {
-            photo.style.left = (x - offsetX) + 'px';
-            photo.style.top = (y - offsetY) + 'px';
+      document.querySelectorAll('.polaroid-drop').forEach((drop, idx) => {
+        drop.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          if(!drop.hasChildNodes() && draggingPhoto) {
+            drop.parentNode.classList.add('highlight');
           }
-          moveAt(e.clientX, e.clientY);
-
-          function onMouseMove(e) { moveAt(e.clientX, e.clientY); }
-          document.addEventListener('mousemove', onMouseMove);
-
-          function onMouseUp(e) {
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup', onMouseUp);
-
-            // Hit test polaroids
-            let dropped = false;
-            document.querySelectorAll('.polaroid-drop').forEach((drop, idx) => {
-              const rect = drop.getBoundingClientRect();
-              if(e.clientX > rect.left && e.clientX < rect.right &&
-                 e.clientY > rect.top && e.clientY < rect.bottom) {
-                // Snap into polaroid if empty
-                if(!drop.hasChildNodes()) {
-                  photo.style.position = '';
-                  photo.style.left = '';
-                  photo.style.top = '';
-                  photo.style.zIndex = 20;
-                  drop.appendChild(photo);
-                  placed[idx] = parseInt(photo.getAttribute('data-photo'));
-                  dropped = true;
-                }
+        });
+        drop.addEventListener('dragleave', function(e) {
+          drop.parentNode.classList.remove('highlight');
+        });
+        drop.addEventListener('drop', function(e) {
+          e.preventDefault();
+          if(!drop.hasChildNodes() && draggingPhoto) {
+            drop.appendChild(draggingPhoto);
+            drop.parentNode.classList.remove('highlight');
+            placed[idx] = parseInt(draggingPhoto.getAttribute('data-photo'));
+            // Remove from previous drop if any
+            document.querySelectorAll('.polaroid-drop').forEach((d2, i2)=>{
+              if(i2 !== idx && d2.contains(draggingPhoto)) {
+                placed[i2] = null;
+                d2.innerHTML = "";
               }
             });
-            if(!dropped) {
-              // Return to original bar
-              photo.style.position = '';
-              photo.style.left = '';
-              photo.style.top = '';
-              photo.style.zIndex = 20;
-              if(origNext) origParent.insertBefore(photo, origNext);
-              else origParent.appendChild(photo);
+            // Remove from bar if still in bar
+            const bar = document.querySelector('.draggable-photos');
+            if(bar.contains(draggingPhoto)) {
+              bar.removeChild(draggingPhoto);
             }
-            photo.classList.remove('dragging');
-            draggingPhoto = null;
-
-            // Remove highlight
-            document.querySelectorAll('.polaroid-frame').forEach(f=>f.classList.remove('highlight'));
-
-            // Update placed array for removed photos
-            document.querySelectorAll('.polaroid-drop').forEach((drop, idx)=>{
-              if(!drop.hasChildNodes()) placed[idx] = null;
-            });
             // Check for win
             if(placed.every((v,i)=>v!==null && v===correctMatch[i])) {
               showDreamyMsg();
             }
           }
-          document.addEventListener('mouseup', onMouseUp);
         });
       });
 
-      // Highlight effect for polaroids on dragover
-      document.querySelectorAll('.polaroid-drop').forEach((drop, idx) => {
-        drop.addEventListener('mouseenter', function() {
-          if(draggingPhoto && !drop.hasChildNodes()) {
-            drop.parentNode.classList.add('highlight');
-          }
-        });
-        drop.addEventListener('mouseleave', function() {
-          drop.parentNode.classList.remove('highlight');
-        });
+      // Allow dragging back to photo bar
+      const bar = document.querySelector('.draggable-photos');
+      bar.addEventListener('dragover', function(e) {
+        e.preventDefault();
+      });
+      bar.addEventListener('drop', function(e) {
+        e.preventDefault();
+        if(draggingPhoto) {
+          bar.appendChild(draggingPhoto);
+          // Update placed array for removed photo
+          document.querySelectorAll('.polaroid-drop').forEach((drop, idx)=>{
+            if(!drop.hasChildNodes()) placed[idx] = null;
+            else if(drop.contains(draggingPhoto)) {
+              drop.innerHTML = "";
+              placed[idx] = null;
+            }
+          });
+        }
       });
 
       function showDreamyMsg() {
@@ -666,7 +650,6 @@
 
       // Reset game on first show
       window.resetPolaroidGame();
-
     })();
   </script>
 </body>
