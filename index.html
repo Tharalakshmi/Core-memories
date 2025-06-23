@@ -26,7 +26,7 @@
       overflow-x: hidden;
       transition: background 1s;
     }
-    /* Aurora Effect (unchanged) */
+    /* Aurora Effect */
     .aurora {
       position: absolute;
       left: 50%;
@@ -75,7 +75,7 @@
       font-weight: 700;
       color: #15111a;
       letter-spacing: 1.5px;
-      text-shadow: 0 2px 12px #fff5, 0 1px 0 #fff8;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.5), 0 1px 0 rgba(255,255,255,0.8);
       margin-bottom: 20px;
       margin-top: 22px;
       line-height: 1.2;
@@ -86,7 +86,7 @@
       letter-spacing: 1px;
       margin-bottom: 12px;
       font-weight: bold;
-      text-shadow: 0 0 5px #fff7, 0 0 20px #d8b6ff77;
+      text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 20px rgba(216,182,255,0.77);
     }
     input[type="text"] {
       padding: 13px 16px;
@@ -97,12 +97,12 @@
       margin-bottom: 10px;
       outline: none;
       background: rgba(255,255,255,0.4);
-      box-shadow: 0 1px 8px #e8b3ff44;
+      box-shadow: 0 1px 8px rgba(232,179,255,0.44);
       transition: border 0.2s;
     }
     input[type="text"]:focus {
       border: 2px solid #e8b3ff;
-      background: #fff8;
+      background: rgba(255,255,255,0.8);
     }
     button {
       padding: 14px 42px;
@@ -118,7 +118,7 @@
       box-shadow: var(--button-glow);
       cursor: pointer;
       transition: background 0.22s, box-shadow 0.22s;
-      text-shadow: 0 0 7px #fff9;
+      text-shadow: 0 0 7px rgba(255,255,255,0.9);
     }
     button:hover, button:active {
       background: var(--accent-dark);
@@ -148,7 +148,7 @@
       color: #6a3574;
       line-height: 1.7;
       margin-bottom: 28px;
-      box-shadow: 0 2px 20px #e7bcde66, 0 10px 60px #e8b3ff33;
+      box-shadow: 0 2px 20px rgba(231,188,222,0.66), 0 10px 60px rgba(232,179,255,0.33);
       animation: fadeInUp 1.2s both;
       max-width: 680px;
       min-width: 0;
@@ -169,7 +169,7 @@
       text-align: center;
       color: #8952a0;
       font-size: 2.1em;
-      text-shadow: 0 2px 16px #e8b3ff33;
+      text-shadow: 0 2px 16px rgba(232,179,255,0.33);
       font-weight: 700;
     }
     .love-story .illustration {
@@ -180,7 +180,7 @@
       width: 52px;
       margin: 0 10px 8px 10px;
       vertical-align: middle;
-      filter: drop-shadow(0 2px 4px #fff8);
+      filter: drop-shadow(0 2px 4px rgba(255,255,255,0.8));
       animation: float 3s ease-in-out infinite;
     }
     @keyframes float {
@@ -212,18 +212,17 @@
       font-weight: bold;
       margin-bottom: 20px;
       margin-top: 18px;
-      box-shadow: 0 4px 18px #e8b3ff44;
-      border: 2px solid #e8b3ff77;
+      box-shadow: 0 4px 18px rgba(232,179,255,0.44);
+      border: 2px solid rgba(232,179,255,0.77);
       display: inline-block;
       width: 87%;
       letter-spacing: 1px;
-      text-shadow: 0 2px 10px #fff5;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.5);
       text-align: center;
     }
     @media (max-width: 600px) {
       .nickname-captcha { width: 99%; padding: 12px 4vw 12px 4vw;}
     }
-    /* Rest of your CSS ... (unchanged) */
     .raindrop {
       position: fixed;
       z-index: 10000;
@@ -234,7 +233,7 @@
       background: linear-gradient(160deg, #fff 60%, #d8b6ff 100%);
       opacity: 0.38;
       animation: raindrop-fall 5.5s linear forwards;
-      box-shadow: 0 7px 18px #fff5;
+      box-shadow: 0 7px 18px rgba(255,255,255,0.5);
     }
     @keyframes raindrop-fall {
       0% { opacity: 0; }
@@ -247,7 +246,7 @@
 <body>
   <!-- Aurora -->
   <div class="aurora"><div class="aurora-gradient"></div></div>
-  <!-- Page 1: Song Captcha (unchanged) -->
+  <!-- Page 1: Song Captcha -->
   <div id="page1" style="min-height:100vh;">
     <div class="frosted">
       <div class="main-question">Prove you're not a robot 🤖💜</div>
@@ -258,7 +257,7 @@
       <div id="songResult"></div>
     </div>
   </div>
-  <!-- Page 2: Love Story + Nickname Captcha (IMPROVED LAYOUT) -->
+  <!-- Page 2: Love Story + Nickname Captcha -->
   <div id="page2" style="display:none; min-height:100vh;">
     <div>
       <div class="love-story">
@@ -273,7 +272,7 @@
         That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!!<br><br>
         Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!!<br><br>
         This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!!<br><br>
-        In every universe, in every lifetime, it’s still you.
+        In every universe, in every lifetime, it's still you.
       </div>
       <div class="nickname-captcha">
         <span>✨ Attractive Captcha: <span style="color:#754b9a;">What does Mohit call Thara?</span> ✨</span>
@@ -285,7 +284,11 @@
       </div>
     </div>
   </div>
-  <!-- (Other pages unchanged...) -->
+  <!-- Page 3: Placeholder for future content -->
+  <div id="page3" style="display:none; min-height:100vh;">
+    <!-- Future content can be added here -->
+  </div>
+  
   <script>
     // Page Navigation
     function showPage(id) {
