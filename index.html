@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Prove you are not a robot 🤖💜</title>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+  <!-- SoundCloud Audio -->
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://soundcloud.com/oembed?format=js&url=https%3A//soundcloud.com/pulkodiyil-thoomani" type="audio/mpeg">
+    <!-- Fallback audio URL - you'll need to provide the actual MP3 file -->
+    <source src="assets/pulkodiyil_thoomani.mp3" type="audio/mpeg">
+  </audio>
   <style>
     :root {
       --main-bg: linear-gradient(135deg, #a084e8 0%, #e7bcde 100%);
@@ -137,8 +143,10 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      padding: 0;
+      padding: 20px;
       margin: 0;
+      position: relative;
+      overflow: hidden;
     }
     .love-story {
       background: rgba(255,255,255,0.92);
@@ -150,8 +158,9 @@
       margin-bottom: 28px;
       box-shadow: 0 2px 20px rgba(231,188,222,0.66), 0 10px 60px rgba(232,179,255,0.33);
       animation: fadeInUp 1.2s both;
-      max-width: 680px;
-      min-width: 0;
+      max-width: 800px;
+      min-width: 320px;
+      width: 90%;
       margin-left: auto;
       margin-right: auto;
       letter-spacing: 0.3px;
@@ -162,6 +171,41 @@
       text-align: center;
       font-family: 'Baloo 2', cursive, sans-serif;
       position: relative;
+    }
+    
+    /* Romantic Captions */
+    .romantic-caption {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 25px;
+      border-radius: 20px;
+      font-size: 1.1em;
+      color: #8952a0;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(232, 179, 255, 0.3);
+      opacity: 0;
+      transform: translateX(100px);
+      animation: slideInRight 1s ease-out forwards;
+      z-index: 100;
+      max-width: 300px;
+      text-align: center;
+      font-family: 'Baloo 2', cursive, sans-serif;
+    }
+    
+    @keyframes slideInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideOutRight {
+      to {
+        opacity: 0;
+        transform: translateX(100px);
+      }
     }
     .love-story h2 {
       margin-top: 0.2em;
@@ -188,19 +232,72 @@
       50% { transform: translateY(-13px);}
     }
     /* Responsive for mobile and desktop */
+    /* Page 3: Core Memories */
+    #page3 {
+      min-height: 100vh;
+      width: 100vw;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .page3-title {
+      text-align: center;
+      color: white;
+      font-size: 2.5em;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .draggable-image {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      cursor: move;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+      border: 3px solid rgba(255,255,255,0.8);
+      z-index: 10;
+    }
+    
+    .draggable-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+    }
+    
+    .draggable-image.dragging {
+      transform: rotate(5deg) scale(1.1);
+      z-index: 1000;
+    }
+    
     @media (max-width: 900px) {
       .love-story {
-        padding: 28px 10vw 22px 10vw;
-        max-width: 95vw;
+        padding: 28px 20px 22px 20px;
+        max-width: 95%;
         font-size: 1.05em;
+      }
+      .romantic-caption {
+        position: static;
+        margin: 10px auto;
+        transform: none;
+        opacity: 1;
       }
     }
     @media (max-width: 600px) {
-      #page2 { padding: 7vw 0; }
+      #page2 { padding: 10px; }
       .love-story {
-        padding: 16px 4vw 16px 4vw;
-        max-width: 99vw;
+        padding: 16px 15px 16px 15px;
+        max-width: 95%;
         font-size: 1em;
+      }
+      .draggable-image {
+        width: 120px;
+        height: 120px;
       }
     }
     .nickname-captcha {
@@ -223,6 +320,61 @@
     @media (max-width: 600px) {
       .nickname-captcha { width: 99%; padding: 12px 4vw 12px 4vw;}
     }
+    /* Smiling Clouds */
+    .cloud {
+      position: fixed;
+      top: 20px;
+      width: 80px;
+      height: 40px;
+      background: #87CEEB;
+      border-radius: 40px;
+      z-index: 5;
+      animation: float-cloud 6s ease-in-out infinite;
+      opacity: 0.9;
+    }
+    
+    .cloud:before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 15px;
+      width: 50px;
+      height: 50px;
+      background: #87CEEB;
+      border-radius: 50%;
+    }
+    
+    .cloud:after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      width: 35px;
+      height: 35px;
+      background: #87CEEB;
+      border-radius: 50%;
+    }
+    
+    .cloud-face {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      z-index: 6;
+    }
+    
+    @keyframes float-cloud {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .cloud:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .cloud:nth-child(2) { left: 30%; animation-delay: 2s; }
+    .cloud:nth-child(3) { left: 60%; animation-delay: 4s; }
+    .cloud:nth-child(4) { left: 85%; animation-delay: 1s; }
+    
+    /* Blue Raindrops */
     .raindrop {
       position: fixed;
       z-index: 10000;
@@ -230,15 +382,15 @@
       width: 7px; height: 16px;
       pointer-events: none;
       border-radius: 80% 80% 60% 60%;
-      background: linear-gradient(160deg, #fff 60%, #d8b6ff 100%);
-      opacity: 0.38;
+      background: linear-gradient(160deg, #4A90E2 20%, #1E3A8A 80%);
+      opacity: 0.6;
       animation: raindrop-fall 5.5s linear forwards;
-      box-shadow: 0 7px 18px rgba(255,255,255,0.5);
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
     }
     @keyframes raindrop-fall {
       0% { opacity: 0; }
-      6% { opacity: 0.7;}
-      90% { opacity: 0.7;}
+      6% { opacity: 0.8;}
+      90% { opacity: 0.8;}
       100% { transform: translateY(110vh); opacity: 0;}
     }
   </style>
@@ -246,6 +398,20 @@
 <body>
   <!-- Aurora -->
   <div class="aurora"><div class="aurora-gradient"></div></div>
+  
+  <!-- Smiling Clouds -->
+  <div class="cloud">
+    <div class="cloud-face">😊</div>
+  </div>
+  <div class="cloud">
+    <div class="cloud-face">😄</div>
+  </div>
+  <div class="cloud">
+    <div class="cloud-face">🙂</div>
+  </div>
+  <div class="cloud">
+    <div class="cloud-face">😌</div>
+  </div>
   <!-- Page 1: Song Captcha -->
   <div id="page1" style="min-height:100vh;">
     <div class="frosted">
@@ -284,20 +450,84 @@
       </div>
     </div>
   </div>
-  <!-- Page 3: Placeholder for future content -->
+  <!-- Page 3: Core Memories -->
   <div id="page3" style="display:none; min-height:100vh;">
-    <!-- Future content can be added here -->
+    <!-- Romantic Captions -->
+    <div id="romanticCaption" class="romantic-caption"></div>
+    <h1 class="page3-title">Core Memories 💫</h1>
+    <img src="assets/mohit_1.png" alt="Mohit Memory 1" class="draggable-image" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <img src="assets/mohit_2.png" alt="Mohit Memory 2" class="draggable-image" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <img src="assets/mohit_3.png" alt="Mohit Memory 3" class="draggable-image" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <img src="assets/mohit_4.png" alt="Mohit Memory 4" class="draggable-image" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <img src="assets/mohit_5.png" alt="Mohit Memory 5" class="draggable-image" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
   </div>
   
   <script>
+    // Romantic captions for Mohit
+    const romanticCaptions = [
+      "You make my heart skip beats 💕",
+      "In your eyes, I found my home 🏠",
+      "Every moment with you is magic ✨",
+      "You're my favorite hello and hardest goodbye 💫",
+      "With you, forever feels like just the beginning 🌟",
+      "You are my today and all of my tomorrows 💝"
+    ];
+    
+    let currentCaptionIndex = 0;
+    let captionInterval;
+    
+    // Start romantic captions slideshow
+    function startRomanticCaptions() {
+      const captionElement = document.getElementById('romanticCaption');
+      if (!captionElement) return;
+      
+      function showNextCaption() {
+        captionElement.style.animation = 'slideOutRight 0.5s ease-in forwards';
+        
+        setTimeout(() => {
+          captionElement.textContent = romanticCaptions[currentCaptionIndex];
+          captionElement.style.animation = 'slideInRight 1s ease-out forwards';
+          currentCaptionIndex = (currentCaptionIndex + 1) % romanticCaptions.length;
+        }, 500);
+      }
+      
+      // Show first caption immediately
+      captionElement.textContent = romanticCaptions[currentCaptionIndex];
+      currentCaptionIndex++;
+      
+      // Start interval for subsequent captions
+      captionInterval = setInterval(showNextCaption, 10000);
+    }
+    
+    // Stop romantic captions
+    function stopRomanticCaptions() {
+      if (captionInterval) {
+        clearInterval(captionInterval);
+        captionInterval = null;
+      }
+    }
+    
     // Page Navigation
     function showPage(id) {
       document.getElementById('page1').style.display = 'none';
       document.getElementById('page2').style.display = 'none';
       document.getElementById('page3').style.display = 'none';
       document.getElementById(id).style.display = 'block';
-      // On page 3 show, reset polaroid game
-      if(id==="page3" && window.resetPolaroidGame) window.resetPolaroidGame();
+      
+      // Stop any existing caption intervals
+      stopRomanticCaptions();
+      
+      // Initialize draggable images and start captions for page 3
+      if (id === 'page3') {
+        setTimeout(initializeDraggableImages, 100);
+        setTimeout(startRomanticCaptions, 1000);
+      }
+      
+      // Ensure audio plays
+      const audio = document.getElementById('backgroundMusic');
+      if (audio) {
+        audio.play().catch(e => console.log('Audio autoplay prevented'));
+      }
     }
     function checkSong() {
       const val = document.getElementById('songInp').value.trim().toLowerCase();
@@ -323,18 +553,124 @@
         res.className = "error";
       }
     }
+    // Draggable Images Functionality
+    function initializeDraggableImages() {
+      const images = document.querySelectorAll('.draggable-image');
+      
+      images.forEach((img, index) => {
+        // Position images in a stack with slight offset
+        const offset = index * 5;
+        img.style.top = `calc(50% + ${offset}px)`;
+        img.style.left = `calc(50% + ${offset}px)`;
+        img.style.zIndex = 10 + index;
+        
+        let isDragging = false;
+        let startX, startY, startLeft, startTop;
+        
+        // Mouse events
+        img.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+        
+        // Touch events for mobile
+        img.addEventListener('touchstart', handleTouch);
+        img.addEventListener('touchmove', handleTouchMove);
+        img.addEventListener('touchend', stopDrag);
+        
+        function startDrag(e) {
+          isDragging = true;
+          img.classList.add('dragging');
+          img.style.zIndex = 1000;
+          
+          const rect = img.getBoundingClientRect();
+          startX = e.clientX;
+          startY = e.clientY;
+          startLeft = rect.left;
+          startTop = rect.top;
+          
+          e.preventDefault();
+        }
+        
+        function drag(e) {
+          if (!isDragging) return;
+          
+          const deltaX = e.clientX - startX;
+          const deltaY = e.clientY - startY;
+          
+          img.style.left = (startLeft + deltaX) + 'px';
+          img.style.top = (startTop + deltaY) + 'px';
+          img.style.transform = 'none';
+        }
+        
+        function stopDrag() {
+          if (isDragging) {
+            isDragging = false;
+            img.classList.remove('dragging');
+            img.style.zIndex = 10 + index;
+          }
+        }
+        
+        function handleTouch(e) {
+          const touch = e.touches[0];
+          const mouseEvent = new MouseEvent('mousedown', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+          });
+          startDrag(mouseEvent);
+          e.preventDefault();
+        }
+        
+        function handleTouchMove(e) {
+          if (!isDragging) return;
+          const touch = e.touches[0];
+          const mouseEvent = new MouseEvent('mousemove', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+          });
+          drag(mouseEvent);
+          e.preventDefault();
+        }
+      });
+    }
+    
     function createRaindrop() {
       const drop = document.createElement('div');
       drop.className = 'raindrop';
       drop.style.left = Math.random() * 98 + 'vw';
       drop.style.width = (6 + Math.random()*3) + 'px';
       drop.style.height = (13 + Math.random()*6) + 'px';
-      drop.style.opacity = (0.3 + Math.random() * 0.45).toFixed(2);
+      drop.style.opacity = (0.4 + Math.random() * 0.4).toFixed(2);
       drop.style.animationDuration = (5.2 + Math.random()*1.2).toFixed(2) + "s";
+      
+      // Add slight blue variation to each raindrop
+      const blueShades = [
+        'linear-gradient(160deg, #4A90E2 20%, #1E3A8A 80%)',
+        'linear-gradient(160deg, #5BA3F5 30%, #2563EB 90%)',
+        'linear-gradient(160deg, #3B82F6 10%, #1D4ED8 70%)'
+      ];
+      drop.style.background = blueShades[Math.floor(Math.random() * blueShades.length)];
+      
       document.body.appendChild(drop);
       setTimeout(()=>{ drop.remove(); }, 6200);
     }
+    
     setInterval(() => { createRaindrop(); }, 1000);
+    
+    // Initialize audio on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('backgroundMusic');
+      if (audio) {
+        // Try to play audio
+        audio.play().catch(e => {
+          console.log('Audio autoplay prevented. User interaction required.');
+          // Add click listener to enable audio on first user interaction
+          document.addEventListener('click', function enableAudio() {
+            audio.play();
+            document.removeEventListener('click', enableAudio);
+          }, { once: true });
+        });
+      }
+    });
   </script>
 </body>
 </html>
