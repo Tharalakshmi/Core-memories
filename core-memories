@@ -1,103 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prove You're Not a Robot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prove you are not a robot 🤖💜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #a084e8 0%, #e7bcde 100%);
+      --frost-bg: rgba(255,255,255,0.20);
+      --frost-border: rgba(255,255,255,0.35);
+      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+      --accent: #e8b3ff;
+      --accent-dark: #b488e8;
+      --text-glow: 0 0 6px #fff, 0 0 18px #e8b3ff;
+      --button-glow: 0 0 15px #e8b3ff, 0 0 40px #b488e8;
+    }
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #8a2be2, #dda0dd);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
+      min-height: 100vh;
+      font-family: 'Baloo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--main-bg);
+      position: relative;
+      overflow-x: hidden;
+      transition: background 1s;
     }
-
-    .container {
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    /* Aurora Effect */
+    .aurora {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 110vw;
+      height: 110px;
+      transform: translateX(-50%);
+      z-index: 10;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .aurora-gradient {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #96fbc4 0%, #f9f586 16%, #fbc2eb 32%, #a084e8 60%, #fbc2eb 80%, #96fbc4 100%);
+      opacity: 0.5;
+      filter: blur(20px);
+      animation: aurora-move 7s linear infinite alternate;
+    }
+    @keyframes aurora-move {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-20vw);}
+    }
+    /* Frosted glass */
+    .frosted {
+      background: var(--frost-bg);
+      border: 2.5px solid var(--frost-border);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(22px);
+      border-radius: 32px;
+      padding: 44px 32px 36px 32px;
+      max-width: 440px;
+      margin: 0 auto;
+      margin-top: 9vh;
+      text-align: center;
+      animation: fadeInUp 1.5s cubic-bezier(0.33,1,0.68,1) both;
+      position: relative;
+      z-index: 20;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(60px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    /* Page 1 Fonts and Question */
+    .main-question {
+      font-family: 'Baloo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 2.1em;
+      font-weight: 700;
+      color: #15111a;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 12px #fff5, 0 1px 0 #fff8;
+      margin-bottom: 20px;
+      margin-top: 22px;
+      line-height: 1.2;
+    }
+    .dreamy-label {
+      color: #15111a;
+      font-size: 1.23em;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px #fff7, 0 0 20px #d8b6ff77;
+    }
+    input[type="text"] {
+      padding: 13px 16px;
+      font-size: 1.1em;
+      border-radius: 12px;
+      border: 1.5px solid #d8b6ff;
+      width: 80%;
+      margin-bottom: 10px;
+      outline: none;
+      background: rgba(255,255,255,0.4);
+      box-shadow: 0 1px 8px #e8b3ff44;
+      transition: border 0.2s;
+    }
+    input[type="text"]:focus {
+      border: 2px solid #e8b3ff;
+      background: #fff8;
+    }
+    button {
+      padding: 14px 42px;
+      border-radius: 18px;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      font-size: 1.22em;
+      letter-spacing: 2px;
+      margin-top: 8px;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-weight: 600;
+      box-shadow: var(--button-glow);
+      cursor: pointer;
+      transition: background 0.22s, box-shadow 0.22s;
+      text-shadow: 0 0 7px #fff9;
+    }
+    button:hover, button:active {
+      background: var(--accent-dark);
+      box-shadow: 0 0 35px #e8b3ff, 0 0 70px #b488e8;
+    }
+    .success { color: #43a047; margin-top: 10px; font-weight: bold; }
+    .error { color: #e53935; margin-top: 10px; font-weight: bold; }
+    /* Page 2: Love Story wider text */
+    .love-story {
+      background: rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 22px 18px;
+      font-size: 1.17em;
+      color: #26132e;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 16px #e7bcde55;
+      animation: fadeInUp 1.2s both;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
+    .illustration img {
+      width: 52px;
+      margin: 0 10px 8px 10px;
+      vertical-align: middle;
+      filter: drop-shadow(0 2px 4px #fff8);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-13px);}
+    }
+    /* Attractive Nickname Captcha */
+    .nickname-captcha {
+      background: linear-gradient(90deg, #fbc2eb 0%, #a6c1ee 100%);
+      border-radius: 12px;
+      padding: 20px 14px 16px 14px;
+      font-size: 1.2em;
+      color: #6a1b9a;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-top: 18px;
+      box-shadow: 0 4px 18px #e8b3ff44;
+      border: 2px solid #e8b3ff77;
+      display: inline-block;
+      width: 87%;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 10px #fff5;
+    }
+    /* Raindrops */
+    .raindrop {
+      position: fixed;
+      z-index: 10000;
+      top: -30px;
+      width: 7px; height: 16px;
+      pointer-events: none;
+      border-radius: 80% 80% 60% 60%;
+      background: linear-gradient(160deg, #fff 60%, #d8b6ff 100%);
+      opacity: 0.38;
+      animation: raindrop-fall 5.5s linear forwards;
+      box-shadow: 0 7px 18px #fff5;
+    }
+    @keyframes raindrop-fall {
+      0% { opacity: 0; }
+      6% { opacity: 0.7;}
+      90% { opacity: 0.7;}
+      100% { transform: translateY(110vh); opacity: 0;}
+    }
+    /* Page 3: Core Memories Paper Stack */
+    .core-memories-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 28px 0 44px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .core-title {
+      font-family: 'Baloo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #6a1b9a;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 8px #fff6, 0 0 14px #e8b3ff66;
       text-align: center;
     }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #fff;
+    .drag-instructions {
+      font-size: 1.07em;
+      color: #6a1b9a;
+      text-shadow: 0 2px 8px #fff6;
+      margin-bottom: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: center;
+      animation: fadeInUp 1.2s both;
     }
-
-    label {
-      font-size: 18px;
+    .main-papers {
+      width: 320px;
+      height: 400px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .paper {
+      width: 230px;
+      height: auto;
+      min-height: 120px;
+      padding: 8px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px #b488e866, 0 1.5px 8px #e8b3ff77;
+      border: 2.5px solid #b488e8;
+      position: absolute;
+      top: 55px;
+      left: 30px;
+      cursor: grab;
+      user-select: none;
+      transition: box-shadow 0.25s, transform 0.13s, border 0.18s;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .paper img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px #e7bcde44;
+      border: none;
       display: block;
-      margin-bottom: 10px;
     }
-
-    input[type="text"] {
-      padding: 10px;
-      width: 80%;
-      border-radius: 10px;
-      border: none;
-      margin-bottom: 20px;
-      font-size: 16px;
+    .paper:active {
+      box-shadow: 0 2px 15px #e8b3ff99, 0 0 4px #fff;
+      border-color: #e7bcde;
     }
-
-    button {
-      padding: 10px 25px;
-      background-color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #8a2be2;
-      transition: background 0.3s ease;
+    .memory-caption {
+      margin-top: 320px;
+      font-size: 1.09em;
+      color: #6a1b9a;
+      text-shadow: 0 2px 8px #fff6;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: center;
+      animation: fadeInUp 1.2s both;
     }
-
-    button:hover {
-      background-color: #e6e6fa;
-    }
-
-    .message {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
+    @media (max-width: 600px) {
+      .frosted { padding: 30px 5vw; max-width: 98vw;}
+      .love-story { max-width: 97vw; }
+      .nickname-captcha { width: 99%; }
+      .main-papers { width: 97vw; }
+      .paper { width: 95vw; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Prove that you are not a robot 🤖💜</h1>
-    <form id="captchaForm">
-      <label for="answer">What is our common favourite song?</label>
-      <input type="text" id="answer" name="answer" placeholder="Type here...">
+  <!-- Aurora -->
+  <div class="aurora"><div class="aurora-gradient"></div></div>
+  <!-- Page 1: Song Captcha -->
+  <div id="page1" style="min-height:100vh;">
+    <div class="frosted">
+      <div class="main-question">Prove you're not a robot 🤖💜</div>
+      <div class="dreamy-label">What is our common <span style="font-style:italic;">favourite song</span>?</div>
+      <input type="text" id="songInp" placeholder="Type here..." autocomplete="off"/>
       <br>
-      <button type="submit">Submit</button>
-      <div class="message" id="message"></div>
-    </form>
+      <button onclick="checkSong()">Submit</button>
+      <div id="songResult"></div>
+    </div>
   </div>
-
+  <!-- Page 2: Love Story + Nickname Captcha -->
+  <div id="page2" style="display:none; min-height:100vh;">
+    <div class="frosted">
+      <div class="love-story">
+        <div class="illustration">
+          <img src="https://em-content.zobj.net/thumbs/120/apple/354/teddy-bear_1f9f8.png" alt="teddy">
+          <img src="https://em-content.zobj.net/thumbs/120/apple/354/tulip_1f337.png" alt="tulip">
+        </div>
+        <h2 style="font-family:'Baloo 2',cursive;font-size:2em;color:#754b9a;">Mohit and Thara 💕</h2>
+        If this page has found you, then my 3 to 4 months of daily coding were truly successful. Because this was made just for you, Sachutty!! Do you remember how we were in the same division in fourth and fifth standard, sat together in the same traveller KRK? And how those senior chechis used to tease us by pretending to marry us by plucking leaves through the traveller window and throwing them on our heads like it was some dramatic ceremony!! We both shouted chii and ran away, laughing and hiding in embarrassment. But little did we know, destiny was smiling quietly that day!!<br><br>
+        And now here we are in 2025. It has almost been a year since you confessed your love to me!! Since then, everything has changed. You became my constant, my peace, my strongest support!! You stayed with me through every low, held me even when you were tired, and gave me the kind of love that speaks louder in silence than in words!!<br><br>
+        You stood by me when no one else did. You tried every day to bring even the smallest smile to my face!! I have seen your efforts, I have felt your love, and I hold it close always. And how can I ever forget 7th of July, the evening you proposed with that shy yet brave heart!! And 13th of July, the moment I accepted your request and gave this love a name!!<br><br>
+        That evening on Snapchat, we were playing Truth or Dare, and I made you say the truth in the most indirect way possible. Even then, you smiled with those shy eyes and said everything without fully saying it!! It was awkward, funny, and somehow deeply beautiful. It felt like our beginning!!<br><br>
+        Heyy Sachutty, I know things have not been easy for you. But I want you to know this with all my heart!! Your Vaava is always rooting for you. Always cheering for you even when the world gets quiet!!<br><br>
+        This page is just one percent of my love. The rest is in every look, every prayer, and every tomorrow where I choose you again and again!!<br><br>
+        In every universe, in every lifetime, it’s still you.
+      </div>
+      <div class="nickname-captcha">
+        <span>✨ Attractive Captcha: <span style="color:#754b9a;">What does Mohit call Thara?</span> ✨</span>
+        <br><br>
+        <input type="text" id="nickInp" placeholder="Enter nickname..." autocomplete="off" style="margin-bottom:6px;width:90%;font-size:1em;"/>
+        <br>
+        <button onclick="checkNickname()" style="font-size:1em;padding:10px 28px;">Unlock Memories</button>
+        <div id="nickResult"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Page 3: Core Memories/Draggable Paper Images -->
+  <div id="page3" style="display:none; min-height:100vh;">
+    <div class="frosted" style="background:rgba(255,255,255,0.15);box-shadow:0 10px 50px #e8b3ff44;">
+      <div class="core-memories-container">
+        <div class="core-title">CORE MEMORIES</div>
+        <div class="drag-instructions">Drag and place each memory 💜</div>
+        <div class="main-papers">
+          <div class="paper paper1"><img src="./assets/mohit_1.png" alt="Memory 1"></div>
+          <div class="paper paper2"><img src="./assets/mohit_2.png" alt="Memory 2"></div>
+          <div class="paper paper3"><img src="./assets/mohit_3.png" alt="Memory 3"></div>
+          <div class="paper paper4"><img src="./assets/mohit_4.png" alt="Memory 4"></div>
+          <div class="paper paper5"><img src="./assets/mohit_5.png" alt="Memory 5"></div>
+        </div>
+        <div class="memory-caption">Your vaava is rooting for you, always have and always will 💜</div>
+        <audio autoplay loop>
+          <source src="./assets/sweet-love.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  </div>
   <script>
-    const form = document.getElementById('captchaForm');
-    const messageDiv = document.getElementById('message');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const answer = document.getElementById('answer').value.trim().toLowerCase();
-
-      if (answer === 'kho gaye') {
-        messageDiv.style.color = '#00ffcc';
-        messageDiv.textContent = "Yeah, you got it 💖";
-        setTimeout(() => {
-          window.location.href = "nextpage.html"; // replace with your actual next page
-        }, 1500);
+    // Page Navigation
+    function showPage(id) {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'none';
+      document.getElementById('page3').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
+    }
+    // Song captcha
+    function checkSong() {
+      const val = document.getElementById('songInp').value.trim().toLowerCase();
+      const res = document.getElementById('songResult');
+      if(val === "kho gaye") {
+        res.textContent = "Correct! 💜";
+        res.className = "success";
+        setTimeout(() => showPage('page2'), 1100);
       } else {
-        messageDiv.style.color = '#ffcccc';
-        messageDiv.textContent = "It's quite close da 💔 Better luck next time!";
+        res.textContent = "Try again! Hint: it's a dreamy song 💔";
+        res.className = "error";
+      }
+    }
+    // Nickname captcha
+    function checkNickname() {
+      const val = document.getElementById('nickInp').value.trim().toLowerCase();
+      const res = document.getElementById('nickResult');
+      if(val === "achu") {
+        res.textContent = "Perfect! Unlocking memories... 💕";
+        res.className = "success";
+        setTimeout(() => showPage('page3'), 1200);
+      } else {
+        res.textContent = "Nope 😔 Try again, cutie!";
+        res.className = "error";
+      }
+    }
+    // Raindrop Animation for ALL pages (10 drops per 10s)
+    function createRaindrop() {
+      const drop = document.createElement('div');
+      drop.className = 'raindrop';
+      drop.style.left = Math.random() * 98 + 'vw';
+      drop.style.width = (6 + Math.random()*3) + 'px';
+      drop.style.height = (13 + Math.random()*6) + 'px';
+      drop.style.opacity = (0.3 + Math.random() * 0.45).toFixed(2);
+      drop.style.animationDuration = (5.2 + Math.random()*1.2).toFixed(2) + "s";
+      document.body.appendChild(drop);
+      setTimeout(()=>{ drop.remove(); }, 6200);
+    }
+    setInterval(() => { createRaindrop(); }, 1000);
+
+    // Page 3: Draggable Paper Stack Logic
+    window.addEventListener("DOMContentLoaded", function() {
+      // Draggable paper stack
+      const papers = Array.from(document.querySelectorAll('.main-papers .paper')).reverse();
+      const stack = document.querySelector('.main-papers');
+      if (stack && papers.length > 0) {
+        papers.forEach((paper, i) => {
+          // Stack each with a slight offset for initial look
+          let offset = i * 12;
+          paper.style.top = 45 + offset + 'px';
+          paper.style.left = 25 + offset + 'px';
+          paper.style.zIndex = 10 + i;
+        });
+        papers.forEach(paper => {
+          paper.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            let shiftX = e.clientX - paper.getBoundingClientRect().left;
+            let shiftY = e.clientY - paper.getBoundingClientRect().top;
+            paper.style.position = 'absolute';
+            paper.style.zIndex = 99;
+            function moveAt(pageX, pageY) {
+              // keep within parent (stack)
+              let minX = stack.getBoundingClientRect().left;
+              let minY = stack.getBoundingClientRect().top;
+              let x = pageX - shiftX - minX;
+              let y = pageY - shiftY - minY;
+              paper.style.left = x + 'px';
+              paper.style.top = y + 'px';
+            }
+            moveAt(e.pageX, e.pageY);
+            function onMouseMove(e) { moveAt(e.pageX, e.pageY); }
+            document.addEventListener('mousemove', onMouseMove);
+            paper.onmouseup = function() {
+              document.removeEventListener('mousemove', onMouseMove);
+              paper.onmouseup = null;
+              paper.style.zIndex = 99 + Math.floor(Math.random()*10);
+            };
+          });
+          paper.ondragstart = () => false;
+        });
       }
     });
   </script>
